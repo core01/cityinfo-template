@@ -1,0 +1,102 @@
+doctype html
+html(lang='en')
+  include includes/head.pug
+  body.pt-3.bg-grey.font-sans.text-sm
+    header.container.bg-white.mx-auto
+      .headline.px-5.border-b
+        .container.mx-auto.flex.justify-between
+          .flex.flex-col.justify-center
+            | Saturday, March 16, 2019
+          .self-end
+            .icons.text-3xl
+              a.text-vk.no-underline(href='https://vk.com/cityinfokz', rel='noreferrer noopener', target='_blank')
+                i.fab.fa-vk
+              a.text-twitter.no-underline.mx-4(href='https://twitter.com/cityinfo_kz', rel='noreferrer noopener', target='_blank')
+                i.fab.fa-twitter
+              a.text-instagram.no-underline(href='https://www.instagram.com/cityinfo.kz/', rel='noreferrer noopener', target='_blank')
+                i.fab.fa-instagram
+      .show-bar
+        .container.mx-auto
+          .flex.flex-wrap.justify-between.p-4
+            .logo.w-full.text-center(class='sm_w-1/2 sm_text-left')
+              a.no-underline(href='/')
+                img.logo(alt='', src='https://www.cityinfo.kz/assets/components/cityinfo/images/logov3.png')
+            .w-full.text-center(class='sm_w-1/2 sm_text-right')
+              a.no-underline(href='#')
+                img(alt='', src='https://www.cityinfo.kz/assets/banners/Kiv/anigif%203.gif')
+      .navbar.bg-black.flex.justify-between.border-t-4.border-lightseagreen
+        .flex(class='w-2/3')
+          ul.list-reset.inline-flex.font-semibold.uppercase
+            li
+              a.block.px-4.py-3.text-white.no-underline(class='hover_bg-lightseagreen', href='#')
+                | Главная
+            li
+              a.block.px-4.py-3.text-white.no-underline(class='hover_bg-lightseagreen', href='#')
+                | Курсы валют
+            li
+              a.block.px-4.py-3.text-white.no-underline(class='hover_bg-lightseagreen', href='#')
+                | Изготовление
+                | Карт-схем
+            li
+              a.block.px-4.py-3.text-white.no-underline(class='hover_bg-lightseagreen', href='#')
+                | Расписание
+                | транспорта
+        .flex.flex-col.justify-center(class='w-1/3')
+          .search.flex.justify-end.mr-4
+            form.flex.justify-end(action='', class='w-3/4')
+              input.px-2.py-1(class='w-3/4', placeholder='Поиск...', type='search')
+              button.button.text-white.mx-2(title='Поиск', type='submit')
+                i.fa.fa-search.text-xl
+            a.text-white(href='#', title='Личный кабинет')
+              i.fa.fa-user.text-xl
+section.flex.flex-wrap.container.mx-auto.py-3.bg-white
+  .w-full.p-4(class='sm_w-1/2')
+    .my-slider
+      .relative
+        a.no-underline(href='#')
+          img.object-contain(alt='', src='https://picsum.photos/600/300?random')
+          .slide-text.absolute.text-white
+            h3 Какой-то заголовок
+      .relative
+        a.no-underline(href='#')
+          img.object-contain(alt='', src='https://picsum.photos/600/300?random&a')
+          .slide-text.absolute.text-white
+            h3 Совершенно другой заголовок
+      .relative
+        a.no-underline(href='#')
+          img.object-contain(alt='', src='https://picsum.photos/600/300?random&b')
+          .slide-text.absolute.text-white
+            h3 Совершенно уникальный другой заголовок
+  .w-full.flex.flex-col.p-4(class='sm_w-1/2')
+    a.block.no-underline.bg-black.w-full.p-12.text-white.text-center.text-3xl(href='#')
+      | Курсы валют
+    a.block.no-underline.bg-red.w-full.p-12.text-white.text-center.mt-6.text-3xl(href='#')
+      | Новости «Атамекен»
+section.flex.flex-wrap.container.mx-auto.py-3.bg-white
+  .text-center(class='w-1/2 sm_w-1/3 md_w-1/6')
+    a.no-underline.text-black(href='#')
+      i.fas.fa-map-marked-alt.text-5xl.text-red
+      h4.my-2 Карта
+      p Изготовление, печать
+  .text-center(class='w-1/2 sm_w-1/3 md_w-1/6')
+    a.no-underline.text-black(href='#')
+      i.fas.fa-gas-pump.text-5xl.text-blue
+      h4.my-2 Бензин
+      p Цены на бензин, диз. топливо, газ
+  .text-center(class='w-1/2 sm_w-1/3 md_w-1/6')
+    a.no-underline.text-black(href='#')
+      i.fas.fa-bus-alt.text-5xl.text-orange
+      h4.my-2 Расписание транспорта
+  .text-center(class='w-1/2 sm_w-1/3 md_w-1/6')
+    a.no-underline.text-black(href='#')
+      i.far.fa-money-bill-alt.text-5xl.text-indigo
+      h4.my-2 Банкоматы на карте
+  .text-center(class='w-1/2 sm_w-1/3 md_w-1/6')
+    a.no-underline.text-black(href='#')
+      i.far.fa-calendar-alt.text-5xl.text-pink
+      h4.my-2 Афиша
+  .text-center(class='w-1/2 sm_w-1/3 md_w-1/6')
+    a.no-underline.text-black(href='#')
+      i.fas.fa-phone-square.text-5xl.text-teal
+      h4.my-2 Коды городов
+include includes/scripts.pug
