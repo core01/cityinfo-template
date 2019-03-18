@@ -956,7 +956,7 @@ module.exports = {
   options: {
     prefix: '',
     important: false,
-    separator: '_'
+    separator: '--'
   }
 
 }

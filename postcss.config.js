@@ -38,7 +38,7 @@ const cssnano = require('cssnano')({
 const plugins = [tailwind, simpleVars, cssImport]
 
 module.exports = ({ env }) => {
-  if (env !== 'development') {
+  if (env === 'production') {
     plugins.push(purgeCSS)
   }
 
