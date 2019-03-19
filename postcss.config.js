@@ -39,9 +39,9 @@ const cssnano = require('cssnano')({
 const plugins = [tailwind, cssImport, cssEach]
 
 module.exports = ({ env }) => {
-  if (env === 'production') {
-    plugins.push(purgeCSS)
-  }
+  // if (env === 'production') {
+  //   plugins.push(purgeCSS)
+  // }
 
   plugins.push(autoprefixer, cssnano)
 
