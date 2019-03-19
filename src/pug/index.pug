@@ -58,49 +58,60 @@ section.flex.flex-wrap.container.mx-auto.py-3.bg-white
     .my-slider
       .relative
         a.no-underline(href='#')
-          img.object-contain(alt='', src='https://picsum.photos/600/300?random')
+          img.object-contain(alt='', src='https://contrattiinternazionalidimarcobianchi.it/wp-content/uploads/2015/04/portfolio-image-1.jpg')
           .slide-text.absolute.text-white
             h3 Какой-то заголовок
       .relative
         a.no-underline(href='#')
-          img.object-contain(alt='', src='https://picsum.photos/600/300?random&a')
+          img.object-contain(alt='', src='https://avatars.mds.yandex.net/get-pdb/911433/25718402-8060-4f3f-bb6e-6f00879318e7/s1200?webp=false')
           .slide-text.absolute.text-white
             h3 Совершенно другой заголовок
       .relative
         a.no-underline(href='#')
-          img.object-contain(alt='', src='https://picsum.photos/600/300?random&b')
+          img.object-contain(alt='', src='http://27.al/wp-content/uploads/2016/10/lodhh.jpg')
+          .slide-text.absolute.text-white
+            h3 Совершенно уникальный другой заголовок
+      .relative
+        a.no-underline(href='#')
+          img.object-contain(alt='', src='https://assets.rbl.ms/4474829/1200x600.jpg?1551474503')
           .slide-text.absolute.text-white
             h3 Совершенно уникальный другой заголовок
   .w-full.flex.flex-col.p-4(class='sm--w-1/2')
-    a.block.no-underline.bg-black.w-full.p-12.text-white.text-center.text-3xl(href='#')
+    a.block.no-underline.bg-black.w-full.p-12.text-white.text-center.text-3xl(href='#').course-1
       | Курсы валют
-    a.block.no-underline.bg-red.w-full.p-12.text-white.text-center.mt-6.text-3xl(href='#')
+    a.block.no-underline.bg-red.w-full.p-12.text-white.text-center.mt-6.text-3xl(href='#').news-1
       | Новости «Атамекен»
-section.flex.flex-wrap.container.mx-auto.py-3.bg-white
+section.flex.flex-wrap.container.mx-auto.p-4.bg-white
   .text-center(class='w-1/2 sm--w-1/3 md--w-1/6')
-    a.no-underline.text-black(href='#')
-      i.fas.fa-map-marked-alt.text-5xl.text-red
-      h4.my-2 Карта
-      p Изготовление, печать
+    .m-2.p-2.bg-grey-lighter
+      a.no-underline.text-black(href='#')
+        i.fas.fa-map-marked-alt.text-5xl.text-red
+        h4.my-2 Карта
+        p Изготовление, печать
   .text-center(class='w-1/2 sm--w-1/3 md--w-1/6')
-    a.no-underline.text-black(href='#')
-      i.fas.fa-gas-pump.text-5xl.text-blue
-      h4.my-2 Бензин
-      p Цены на бензин, диз. топливо, газ
+    .m-2.p-2.border-2
+      a.no-underline.text-black(href='#')
+        i.fas.fa-gas-pump.text-5xl.text-blue
+        h4.my-2 Бензин
+        p Цены на бензин, диз. топливо, газ
   .text-center(class='w-1/2 sm--w-1/3 md--w-1/6')
-    a.no-underline.text-black(href='#')
-      i.fas.fa-bus-alt.text-5xl.text-orange
-      h4.my-2 Расписание транспорта
+    .m-2.p-2.shadow.border-t
+      a.no-underline.text-black(href='#')
+        i.fas.fa-bus-alt.text-5xl.text-orange
+        h4.my-2 Расписание транспорта
   .text-center(class='w-1/2 sm--w-1/3 md--w-1/6')
-    a.no-underline.text-black(href='#')
-      i.far.fa-money-bill-alt.text-5xl.text-indigo
-      h4.my-2 Банкоматы на карте
+    .m-2.p-2.bg-grey-lighter.shadow
+      a.no-underline.text-black(href='#')
+        i.far.fa-money-bill-alt.text-5xl.text-indigo
+        h4.my-2 Банкоматы на карте
   .text-center(class='w-1/2 sm--w-1/3 md--w-1/6')
-    a.no-underline.text-black(href='#')
-      i.far.fa-calendar-alt.text-5xl.text-pink
-      h4.my-2 Афиша
+    .m-2.p-2.bg-grey-light
+      a.no-underline.text-black(href='#')
+        i.far.fa-calendar-alt.text-5xl.text-pink
+        h4.my-2 Афиша
   .text-center(class='w-1/2 sm--w-1/3 md--w-1/6')
-    a.no-underline.text-black(href='#')
-      i.fas.fa-phone-square.text-5xl.text-teal
-      h4.my-2 Коды городов
+    .m-2.p-2.bg-grey-light.shadow
+      a.no-underline.text-black(href='#')
+        i.fas.fa-phone-square.text-5xl.text-teal
+        h4.my-2 Коды городов
 include includes/scripts.pug

@@ -1,6 +1,7 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const fs = require('fs')
 
 const generateHtmlPlugins = templateDir => {
@@ -79,6 +80,12 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: './css/[name].css',
       chunkFilename: '[id].css'
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: './src/images',
+        to: './images'
+      }
+    ])
   ].concat(htmlPlugins)
 }
