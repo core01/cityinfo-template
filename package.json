@@ -40,7 +40,8 @@
     "webpack-dev-server": "^3.2.1"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --mode production && html dist/*.html --indent-size 2",
+    "build": "webpack --mode production && html dist/*.html --indent-size 2",
+    "build-demo": "webpack --mode development && html dist/*.html --indent-size 2",
     "dev": "webpack-dev-server --mode development --open",
     "lintfix": "eslint --ext .js --ignore-path .gitignore . --fix"
   }

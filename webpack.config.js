@@ -1,6 +1,7 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const fs = require('fs')
 
 const generateHtmlPlugins = templateDir => {
@@ -24,61 +25,67 @@ const generateHtmlPlugins = templateDir => {
 
 const htmlPlugins = generateHtmlPlugins('./src/pug')
 
-module.exports = {
-  entry: [
-    './src/js/main.js',
-    './src/css/main.css'
-  ],
-  output: {
-    filename: './js/main.js'
-  },
-  devtool: 'source-map',
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      },
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
+module.exports = (env, argv) => {
+  return {
+    entry: ['./src/js/main.js', './src/css/main.css'],
+    output: {
+      filename: './js/main.js'
+    },
+    devtool: 'source-map',
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
             options: {
-              publicPath: path.resolve(__dirname, 'css/')
+              presets: ['@babel/preset-env']
             }
-          },
-          {
-            loader: 'css-loader',
-            options: { importLoaders: 1 }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              config: {
-                path: path.resolve(__dirname, 'postcss.config.js')
+          }
+        },
+        {
+          test: /\.css$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: path.resolve(__dirname, 'css/')
+              }
+            },
+            {
+              loader: 'css-loader',
+              options: { importLoaders: 1 }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                config: {
+                  path: path.resolve(__dirname, 'postcss.config.js'),
+                  ctx: { mode: argv.mode }
+                }
               }
             }
-          }
-        ]
-      },
-      {
-        test: /\.pug$/,
-        use: ['html-loader', 'pug-html-loader?pretty&exports=false']
-      }
-    ]
-  },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: './css/[name].css',
-      chunkFilename: '[id].css'
-    })
-  ].concat(htmlPlugins)
+          ]
+        },
+        {
+          test: /\.pug$/,
+          use: ['html-loader', 'pug-html-loader?pretty&exports=false']
+        }
+      ]
+    },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: './css/[name].css',
+        chunkFilename: '[id].css'
+      }),
+      new CopyWebpackPlugin([
+        {
+          from: './src/images',
+          to: './images'
+        }
+      ])
+    ].concat(htmlPlugins)
+  }
 }
