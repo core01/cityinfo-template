@@ -36,12 +36,12 @@ const cssnano = require('cssnano')({
   ]
 })
 
-const plugins = [tailwind, cssImport, cssEach]
+const plugins = [tailwind, cssImport, cssEach, simpleVars]
 
-module.exports = ({ env }) => {
-  // if (env === 'production') {
-  //   plugins.push(purgeCSS)
-  // }
+module.exports = ({ options }) => {
+  if (options.mode === 'production') {
+    plugins.push(purgeCSS)
+  }
 
   plugins.push(autoprefixer, cssnano)
 
