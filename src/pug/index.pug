@@ -1,106 +1,74 @@
-doctype html
-html(lang='en')
-  include includes/head.pug
-  body.pt-3.bg-grey.font-sans.text-sm
-    header.container.bg-white.mx-auto
-      .headline.px-5.border-b
-        .container.mx-auto.flex.justify-between
-          .flex.flex-col.justify-center
-            | Saturday, March 16, 2019
-          .self-end
-            .icons.text-xl.lg--text-3xl
-              a.text-vk.no-underline(href='https://vk.com/cityinfokz', rel='noreferrer noopener', target='_blank')
-                i.fab.fa-vk
-              a.text-twitter.no-underline.mx-4(href='https://twitter.com/cityinfo_kz', rel='noreferrer noopener', target='_blank')
-                i.fab.fa-twitter
-              a.text-instagram.no-underline(href='https://www.instagram.com/cityinfo.kz/', rel='noreferrer noopener', target='_blank')
-                i.fab.fa-instagram
-      .show-bar
-        .container.mx-auto
-          .flex.flex-wrap.justify-between.p-4
-            .logo.w-full.text-center(class='sm--w-1/2 sm--text-left')
-              a.no-underline(href='/')
-                img.logo(alt='', src='https://www.cityinfo.kz/assets/components/cityinfo/images/logov3.png')
-            .w-full.text-center(class='sm--w-1/2 sm--text-right')
-              a.no-underline(href='#')
-                img(alt='', src='https://www.cityinfo.kz/assets/banners/Kiv/anigif%203.gif')
-      .navbar.bg-black.flex.justify-between.border-t-4.border-lightseagreen.h-10.lg--h-auto.flex-row
-        .flex.lg--hidden
-          button.nav-toggle.appearance-none.mx-2(type='button')
-            svg.fill-current.text-white.w-6.h-6(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 20 20')
-              path(d='M16.4 9H3.6c-.552 0-.6.447-.6 1 0 .553.048 1 .6 1h12.8c.552 0 .6-.447.6-1 0-.553-.048-1-.6-1zm0 4H3.6c-.552 0-.6.447-.6 1 0 .553.048 1 .6 1h12.8c.552 0 .6-.447.6-1 0-.553-.048-1-.6-1zM3.6 7h12.8c.552 0 .6-.447.6-1 0-.553-.048-1-.6-1H3.6c-.552 0-.6.447-.6 1 0 .553.048 1 .6 1z')
-        nav.hidden.lg--flex.nav.z-10.absolute.mt-8.lg--relative.lg--mt-0
-          ul.list-reset.lg--flex.block.font-semibold.uppercase.bg-black
-            li.block
-              a.block.px-4.py-3.text-white.no-underline(class='hover--bg-lightseagreen', href='#')
-                | Главная
-            li.block
-              a.block.px-4.py-3.text-white.no-underline(class='hover--bg-lightseagreen', href='#')
-                | Курсы валют
-            li.block
-              a.block.px-4.py-3.text-white.no-underline(class='hover--bg-lightseagreen', href='#')
-                | Изготовление
-                | Карт-схем
-            li.block
-              a.block.px-4.py-3.text-white.no-underline(class='hover--bg-lightseagreen', href='#')
-                | Расписание
-                | транспорта
-        .flex.flex-col.justify-center.flex-grow
-          .search.flex.justify-end.mr-4
-            form.flex.justify-end(action='')
-              input.px-2.py-1(placeholder='Поиск...', type='search')
-              button.text-white.mx-2(title='Поиск', type='submit')
-                i.fa.fa-search.text-xl
-              a.text-white.no-underline.flex.self-center(href='#', title='Личный кабинет')
-                i.fa.fa-user.text-xl
-section.flex.flex-wrap.container.mx-auto.py-3.bg-white
+extends layout/base.pug
+
+block content
   .w-full.p-4(class='sm--w-1/2')
     .my-slider
       .relative
         a.no-underline(href='#')
-          img.object-contain(alt='', src='https://picsum.photos/600/300?random')
+          img.object-contain(alt='', src='https://contrattiinternazionalidimarcobianchi.it/wp-content/uploads/2015/04/portfolio-image-1.jpg')
           .slide-text.absolute.text-white
             h3 Какой-то заголовок
       .relative
         a.no-underline(href='#')
-          img.object-contain(alt='', src='https://picsum.photos/600/300?random&a')
+          img.object-contain(alt='', src='https://avatars.mds.yandex.net/get-pdb/911433/25718402-8060-4f3f-bb6e-6f00879318e7/s1200?webp=false')
           .slide-text.absolute.text-white
             h3 Совершенно другой заголовок
       .relative
         a.no-underline(href='#')
-          img.object-contain(alt='', src='https://picsum.photos/600/300?random&b')
+          img.object-contain(alt='', src='http://27.al/wp-content/uploads/2016/10/lodhh.jpg')
           .slide-text.absolute.text-white
             h3 Совершенно уникальный другой заголовок
   .w-full.flex.flex-col.p-4(class='sm--w-1/2')
-    a.block.no-underline.bg-black.w-full.p-12.text-white.text-center.text-3xl(href='#')
+    a.block.no-underline.bg-black.w-full.p-12.text-white.text-center.text-3xl.main-courses(href='#')
       | Курсы валют
-    a.block.no-underline.bg-red.w-full.p-12.text-white.text-center.mt-6.text-3xl(href='#')
+    a.block.no-underline.bg-red.w-full.p-12.text-white.text-center.mt-6.text-3xl.main-atameken(href='#')
       | Новости «Атамекен»
-section.flex.flex-wrap.container.mx-auto.py-3.bg-white
   .text-center(class='w-1/2 sm--w-1/3 md--w-1/6')
-    a.no-underline.text-black(href='#')
-      i.fas.fa-map-marked-alt.text-5xl.text-red
-      h4.my-2 Карта
-      p Изготовление, печать
+    .bg-grey-light.m-2.p-2
+      a.no-underline.text-black(href='#')
+        i.fas.fa-map-marked-alt.text-5xl.text-red
+        h4.my-2 Карта
+        p Изготовление, печать
   .text-center(class='w-1/2 sm--w-1/3 md--w-1/6')
-    a.no-underline.text-black(href='#')
-      i.fas.fa-gas-pump.text-5xl.text-blue
-      h4.my-2 Бензин
-      p Цены на бензин, диз. топливо, газ
+    .bg-grey-light.m-2.p-2
+      a.no-underline.text-black(href='#')
+        i.fas.fa-gas-pump.text-5xl.text-blue
+        h4.my-2 Бензин
+        p Цены на бензин, диз. топливо, газ
   .text-center(class='w-1/2 sm--w-1/3 md--w-1/6')
-    a.no-underline.text-black(href='#')
-      i.fas.fa-bus-alt.text-5xl.text-orange
-      h4.my-2 Расписание транспорта
+    .bg-grey-light.m-2.p-2
+      a.no-underline.text-black(href='#')
+        i.fas.fa-bus-alt.text-5xl.text-orange
+        h4.my-2 Расписание транспорта
   .text-center(class='w-1/2 sm--w-1/3 md--w-1/6')
-    a.no-underline.text-black(href='#')
-      i.far.fa-money-bill-alt.text-5xl.text-indigo
-      h4.my-2 Банкоматы на карте
+    .bg-grey-light.m-2.p-2
+      a.no-underline.text-black(href='#')
+        i.far.fa-money-bill-alt.text-5xl.text-indigo
+        h4.my-2 Банкоматы на карте
   .text-center(class='w-1/2 sm--w-1/3 md--w-1/6')
-    a.no-underline.text-black(href='#')
-      i.far.fa-calendar-alt.text-5xl.text-pink
-      h4.my-2 Афиша
+    .bg-grey-light.m-2.p-2
+      a.no-underline.text-black(href='#')
+        i.far.fa-calendar-alt.text-5xl.text-pink
+        h4.my-2 Афиша
   .text-center(class='w-1/2 sm--w-1/3 md--w-1/6')
-    a.no-underline.text-black(href='#')
-      i.fas.fa-phone-square.text-5xl.text-teal
-      h4.my-2 Коды городов
-include includes/scripts.pug
+    .bg-grey-light.m-2.p-2
+      a.no-underline.text-black(href='#')
+        i.fas.fa-phone-square.text-5xl.text-teal
+        h4.my-2 Коды городов
+
+block scripts
+  script(crossorigin='anonymous', integrity='sha256-pau+EjagELvmW7XoDOgz4DCKHep0GuC+kw6U8GQKo94=', src='https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.1/min/tiny-slider.js')
+  script.
+    document.addEventListener('DOMContentLoaded', function () {
+      tns({
+        container: '.my-slider',
+        slideBy: 'page',
+        autoplay: true,
+        mouseDrag: true,
+        swipeAngle: false,
+        controls: false,
+        nav: false,
+        autoplayButtonOutput: false,
+        autoplayTimeout: 10000
+      })
+    })

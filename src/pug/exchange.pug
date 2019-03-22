@@ -1,0 +1,251 @@
+extends layout/base.pug
+
+block content
+  .w-full.flex.flex-col.p-4(class='lg--w-1/4')
+    a.block.no-underline.bg-black.w-full.p-3.text-white.text-center.text-xl(href='#')
+      | Регистрация обменных пунктов
+
+  .w-full.flex.flex-col.p-4(class='lg--w-3/4')
+    .flex.flex-wrap.lg--inline-flex
+      button.m-1.lg--m-0.hover--bg-grey-lighter.hover--border-grey-dark.py-2.px-4.border
+        | Астана
+      button.m-1.lg--m-0.hover--bg-grey-lighter.hover--border-grey-dark.py-2.px-4.border
+        | Алматы
+      button.m-1.lg--m-0.hover--bg-grey-lighter.hover--border-grey-dark.py-2.px-4.border
+        | Павлодар
+      button.m-1.lg--m-0.py-2.px-4.bg-lightseagreen.text-grey-lighter
+        | Усть-Каменогорск
+      button.m-1.lg--m-0.hover--bg-grey-lighter.hover--border-grey-dark.py-2.px-4.border
+        | Риддер
+      button.m-1.lg--m-0.hover--bg-grey-lighter.hover--border-grey-dark.py-2.px-4.border
+        | Другие города
+
+  .flex.flex-col.mx-auto.p-4.leading-loose.w-full(class='lg--w-5/6')
+    p.text-center.text-xl.text-grey-darkest.mb-2
+      b
+        | Курсы обновляются ежедневно в он-лайн режиме.
+    .hidden.lg--block.font-bold.text-grey-darkest
+      p.mb-2
+        b.text-red
+          | Рекомендуем:
+      p.mb-2
+        | 1. В связи с частыми изменениями курсов валют обновлять страницу или уточнять курс по телефонам (см. телефоны банков и обменных пунктов).
+      p.mb-2
+        | 2. Так же, узнать точный курс можно по т. 13-55 (звонок бесплатный), 8-777-646-13-55, (звонок с сотового телефона) с понедельника по пятницу 10-00 до 18-00,в субботу c 10-00 до 16-00 в воскресенье вых.
+      p.mb-2
+        | 3. Нажать покупку или продажу (в таблице), чтобы произвести сортировку выгодного курса валют.
+      p.text-center.mb-2.font-normal
+        | Выгодный курс покупки -
+        span.text-red
+          | красный цвет
+      p.text-center.mb-2.font-normal
+        | Выгодный курс продажи -
+        span.text-blue
+          | синий цвет
+      p.mb-2
+        | 4. Воспользоваться функционалом нашего Telegram бота, позволяющим узнать курсы валют не выходя из приложения Telegram: перейдите по ссылке
+        a(href="https://t.me/ExchangeRatesKzBot", target="_blank") @ExchangeRatesKzBot
+        | или введите в поиске Telegram - "Курсы валют Казахстана", (инструкция по использованию бота
+        a(href="exchange/telegram.html", target="_blank") здесь
+        | .)
+    .text-center
+      a(href="https://www.atamekentv.info/", target="_blank")
+        img(src="https://cityinfo.kz/assets/images/reclama_banners/atameken.gif")
+
+    .my-2
+      table.courses
+        thead
+          tr
+            th
+              | Национальный банк РК
+            th
+              img(src="https://cityinfo.kz/assets/images/flags/flag_usa_1.png")
+            th
+              img(src="https://cityinfo.kz/assets/images/flags/European Union_1.png")
+            th
+              img(src="https://cityinfo.kz/assets/images/flags/flag_russia_1.png")
+            th
+              img(src="https://cityinfo.kz/assets/images/flags/flag_china_1.png")
+            th
+              img(src="https://cityinfo.kz/assets/images/flags/flag_gb_1.png")
+            th
+              | Официальный сайт
+        tbody
+          tr
+            td
+              a(href="#") Национальный банк РК
+            td 378.17
+            td 429.11
+            td 5.88
+            td 56.48
+            td 500.05
+            td
+              a(href="http://www.nationalbank.kz/?&amp;switch=russian", target="_blank", rel="nofollow") Нацбанк
+
+    .my-2.mx-auto
+      p.mb-2
+        b.text-red-darker При несоответствии курса валют на сайте и в обменном пункте, просим вас уведомить нас следующим образом:
+
+      ol.ml-2.my-2
+        li
+          | Отправить фотографию курсов валют в обменном пункте  на номер
+          a(href="tel:+777764641355") +77776461355
+          | (whatsapp, telegram).
+        li.mt-2
+          | Позвонить по номеру
+          a(href="tel:+77776461355") +77776461355
+          | и сообщить о нарушении (все разговоры записываются)
+      p
+        |  Обменным пунктам нарушившим пункт договора о предоставлении достоверной информации в личный кабинет выведено соответсвующие уведомление ( с уведомлением можно ознакомиться по ссылкам:
+        a(href="/assets/components/exchangecourses/files/4700/Mar_04_14-29-19.png", target="_blank") уведомление
+        | )
+
+    table.courses
+      thead
+        tr
+          th(rowspan="2")
+            | Обменный пункт / Время обновления
+          th(colspan="2")
+            img(src="https://cityinfo.kz/assets/images/flags/flag_usa_1.png")
+          th(colspan="2")
+            img(src="https://cityinfo.kz/assets/images/flags/European Union_1.png")
+          th(colspan="2")
+            img(src="https://cityinfo.kz/assets/images/flags/flag_russia_1.png")
+          th(colspan="2")
+            img(src="https://cityinfo.kz/assets/images/flags/flag_china_1.png")
+          th(colspan="2")
+            img(src="https://cityinfo.kz/assets/images/flags/flag_gb_1.png")
+          th(rowspan="2")
+            | Адрес
+        tr
+          th.text-center
+            a(href="/exchange/ust-kamenogorsk/?sort=usdb") покуп
+          th.text-center
+            a(href="/exchange/ust-kamenogorsk/?sort=usdb") прод
+          th.text-center
+            a(href="/exchange/ust-kamenogorsk/?sort=usdb") покуп
+          th.text-center
+            a(href="/exchange/ust-kamenogorsk/?sort=usdb") прод
+          th.text-center
+            a(href="/exchange/ust-kamenogorsk/?sort=usdb") покуп
+          th.text-center
+            a(href="/exchange/ust-kamenogorsk/?sort=usdb") прод
+          th.text-center
+            a(href="/exchange/ust-kamenogorsk/?sort=usdb") покуп
+          th.text-center
+            a(href="/exchange/ust-kamenogorsk/?sort=usdb") прод
+          th.text-center
+            a(href="/exchange/ust-kamenogorsk/?sort=usdb") покуп
+          th.text-center
+            a(href="/exchange/ust-kamenogorsk/?sort=usdb") прод
+      tbody
+        tr
+          td(colspan="12").text-lg Розничные курсы
+        tr
+          td
+            a(href="/company-card.html?id=761", title="&quot;ОПАЛ&quot; КРУГЛОСУТОЧНО") "ОПАЛ" КРУГЛОСУТОЧНО
+            p.course-date
+              span.current-course-date
+                | 19:44:29
+              span.current-course-date
+                | 22.03.2019
+          td.course-best-buy 375.00
+          td 380
+          td.course-best-buy 427.00
+          td 432
+          td 5.50
+          td 6.1
+          td 53.00
+          td 58
+          td 500
+          td 550
+          td
+            | пр. Независимости, 3
+            br
+            | 8(7232) 21-34-53
+        tr
+          td
+            a(href="/company-card.html?id=761", title="&quot;ОПАЛ&quot; КРУГЛОСУТОЧНО") "ОПАЛ" КРУГЛОСУТОЧНО
+            p.course-date
+              span.current-course-date
+                | 19:44:29
+              span.current-course-date
+                | 22.03.2019
+          td 375.00
+          td.course-best-sell 380
+          td 427.00
+          td 432
+          td 5.50
+          td 6.1
+          td.course-best-buy 53.00
+          td 58
+          td 500
+          td 550
+          td
+            | пр. Независимости, 3
+            br
+            | 8(7232) 21-34-53
+        tr
+          td
+            a(href="/company-card.html?id=761", title="&quot;ОПАЛ&quot; КРУГЛОСУТОЧНО") "ОПАЛ" КРУГЛОСУТОЧНО
+            p.course-date
+              span.old-course-date
+                | 19:44:29
+              span.old-course-date
+                | 22.03.2019
+          td 375.00
+          td 380
+          td 427.00
+          td.course-best-sell 432
+          td 5.50
+          td.course-best-sell 6.1
+          td 53.00
+          td 58
+          td.course-best-buy 500
+          td.course-best-sell 550
+          td
+            | пр. Независимости, 3
+            br
+            | 8(7232)75-10-40, 8-777-072-00-92
+        tr
+          td(colspan="12").text-lg Оптовые курсы
+        tr
+          td
+            a(href="/company-card.html?id=761", title="&quot;ОПАЛ&quot; КРУГЛОСУТОЧНО") "ОПАЛ" КРУГЛОСУТОЧНО
+            p.course-date
+              span.current-course-date
+                | 19:44:29
+              span.current-course-date
+                | 22.03.2019
+          td 375.00
+          td 380
+          td 427.00
+          td 432
+          td.course-best-buy 5.50
+          td 6.1
+          td 53.00
+          td.course-best-sell 58
+          td 500
+          td.course-best-sell 550
+          td
+            | пр. Независимости, 3
+            br
+            | 8(7232)75-10-40, 8-777-072-00-92
+
+    p
+      | По вопросу размещения информации, пишите:
+    p
+      b Email:
+      a(href="mailto:1355@1355.kz") 1355@1355.kz
+    h4 Валютный курс
+    p.text-justify.mb-2 Понятие «обмен валюты» связано с такой ее характеристикой, как конвертируемость. Степень конвертируемости валюты определяется механизмом государственного регулирования валютных операций. Валюту называют свободно конвертируемой, если в стране этой валюты к резидентам и нерезидентам не применяют какие-либо ограничения на осуществление валютных сделок, и неконвертируемой, если в стране этой денежной единицы действуют законодательно установленные ограничения почти на все виды операций с ней. Частично конвертируемой считается валюта стран, в которых действуют ограничения и регламентации на некоторые виды обменных операций или для некоторых участников этих операций. Свобода конвертации валюты должна опираться на экономическую стабильность страны, то есть одного законодательного разрешения обмена валюты недостаточно, необходимы доверие к валюте и оценка экономической состоятельности страны. Таким образом конвертируемость — это способность валюты свободно обмениваться на другие валюты и обратно на национальную валюту на валютных рынках.
+    p.text-justify.mb-2 Для конвертированных валют в основе курса лежит валютный паритет. Однако курсы валют почти никогда не совпадают с их валютным паритетом. В условиях международной торговли и других внешнеэкономических акций отношение поступлений и платежей в иностранной валюте и, соответственно, спрос и предложение иностранной валюты не находится в равновесии. При активном платежном балансе курсы иностранных валют на валютном рынке данной страны падают, а курс национальной денежной единицы повышается. Обратное происходит в случае, когда страна имеет пассивный платежный баланс. Потому в большинстве стран вместе с твердым официальным курсом национальной валюты также существует свободный. По официальному паритету осуществляются расчеты центральных национальных банков и других валютно-финансовых учреждений между разными странами и с международными организациями. Расчеты между частными лицами и организациями осуществляются по свободному курсу.
+    p.text-justify.mb-2 Фиксирование национальной денежной единицы в иностранной называется валютной котировкой. Принято различать прямую и обратную (косвенную) котировку. Прямая котировка — это цена иностранной валюты, сложившаяся на национальном рынке. Она показывает количество валюты-измерителя, приходящегося на единицу котируемой валюты. Обратная (косвенная) котировка отражает количество единиц котируемой валюты, приходящееся на единицу валюты-измерителя. Курс одной валюты по отношению к другой может быть определен также через третью валюту. В этом случае он называется кросс-курсом. Необходимость в таких котировках возникает в тех случаях, когда объем прямых обменных операций между двумя валютами относительно мал, и, следовательно, не складываются достаточно представительные прямые котировки. Кроме того, даже при наличии надежных прямых котировок расчет кросс-курса может дать несколько отличную величину курса. При наблюдении за уровнем валютного курса фиксируют два курса:
+    p • Курс продавца (по которому банк продает валюту);
+    p • Курс покупателя (по которому банк покупает валюту).
+  .banners.flex.flex-col(class="lg--w-1/6")
+    img(src="https://www.cityinfo.kz/assets/images/exchange/telegram/telegram-exchange-rates.jpg", class="text-center mb-2", width="180px", height="auto")
+    img(src="https://www.cityinfo.kz/assets/images/reclama_banners/Dental-Service.png", class="text-center mb-2", width="180px", height="270px")
+    img(src="https://www.cityinfo.kz/assets/images/reclama_banners/femina.png", class="text-center mb-2", width="180px", height="270px")
+    img(src="https://www.cityinfo.kz/assets/images/reclama_banners/stomatologiydlyvas1.png", class="text-center mb-2", width="180px", height="270px")
+    img(src="https://www.cityinfo.kz/assets/images/reclama_banners/3217.png", class="text-center mb-2", width="180px", height="270px")
