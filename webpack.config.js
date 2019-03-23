@@ -23,11 +23,11 @@ const generateHtmlPlugins = templateDir => {
   })
 }
 
-const htmlPlugins = generateHtmlPlugins('./src/pug')
+const htmlPlugins = generateHtmlPlugins('./src/template')
 
 module.exports = (env, argv) => {
   return {
-    entry: ['./src/js/main.js', './src/css/main.css'],
+    entry: ['./src/js/main.js', './src/css/main.pcss'],
     output: {
       filename: './js/main.js'
     },
@@ -45,7 +45,7 @@ module.exports = (env, argv) => {
           }
         },
         {
-          test: /\.css$/,
+          test: /\.pcss$/,
           exclude: /node_modules/,
           use: [
             {
@@ -70,8 +70,19 @@ module.exports = (env, argv) => {
           ]
         },
         {
-          test: /\.pug$/,
-          use: ['html-loader', 'pug-html-loader?pretty&exports=false']
+          test: /\.njk$/,
+          use: [
+            'html-loader',
+            {
+              loader: 'nunjucks-html-loader',
+              options: {
+                // Other super important. This will be the base
+                // directory in which webpack is going to find
+                // the layout and any other file index.njk is calling.
+                searchPaths: ['./src/template']
+              }
+            }
+          ]
         }
       ]
     },

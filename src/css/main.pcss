@@ -73,13 +73,17 @@ input:focus {
   bottom: 25px;
 }
 
-.courses {
+.courses-table {
   width: 100%;
+  line-height: 1.5rem;
 }
 
-.courses td,
-.courses th {
+.courses-table th {
   padding: 0.25rem;
+}
+
+.courses-table td,
+.courses-table th {
   text-align: center;
   border: 1px solid config("textColors.grey-dark");
 }
@@ -107,7 +111,27 @@ input:focus {
   background-image: url(/images/exchange/5.jpg);
 }
 
+.main-courses span, .main-atameken span {
+  background-color: rgba(6, 20, 2, 0.4);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
 .main-atameken {
   background-size: cover;
   background-image: url(/images/news/1.jpg);
+}
+
+.courses-table--row-title {
+  font-size: 1.125rem;
+  padding: 0.5rem;
+}
+
+.search-result {
+  min-height: 8rem;
+  max-height: 8rem;
+}
+
+.search-result img {
+  max-height: 4rem;
 }

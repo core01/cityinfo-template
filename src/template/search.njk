@@ -1,0 +1,114 @@
+{% extends "layout/base.njk" %}
+{% block content %}
+    {% set categories = [
+        {title: "АВТОМОБИЛИ", icon: "fas fa-car"},
+        {title: "БЕЗОПАСНОСТЬ", icon: "fas fa-user-shield" },
+        {title: "БИЗНЕС", icon: "fas fa-business-time" },
+        {title: "БИЛЕТЫ", icon: "fas fa-ticket-alt" },
+        {title: "ВЛАСТИ, ОБЩЕСТВО", icon: "fas fa-flag-usa" },
+        {title: "ДОМАШНИЕ ЖИВОТНЫЕ", icon: "fas fa-paw" },
+        {title: "ДОСУГ И ИСКУССТВО", icon: "fas fa-hat-wizard" },
+        {title: "КОМПЬЮТЕРЫ", icon: "fas fa-desktop" },
+        {title: "КРАСОТА И ЗДОРОВЬЕ", icon: "fas fa-running" },
+        {title: "МЕДИЦИНА", icon: "fas fa-heartbeat" },
+        {title: "НЕДВИЖИМОСТЬ", icon: "far fa-building" },
+        {title: "ОБРАЗОВАНИЕ", icon: "fas fa-university" },
+        {title: "РЕМОНТ", icon: "fas fa-tools" },
+        {title: "РЕСТОРАНЫ И КАФЕ", icon: "fas fa-wine-glass-alt" },
+        {title: "СВЯЗЬ", icon: "fas fa-mobile" },
+        {title: "СПОРТ", icon: "fas fa-volleyball-ball" },
+        {title: "СТРАХОВАНИЕ", icon: "fas fa-car-crash" },
+        {title: "СТРОИТЕЛЬНЫЕ ТОВАРЫ", icon: "fas fa-car-crash" },
+        {title: "ТАКСИ", icon: "fas fa-taxi" },
+        {title: "ТОВАРЫ ДЛЯ ДОМА", icon: "fas fa-home" },
+        {title: "ТОВАРЫ И МАГАЗИНЫ", icon: "fas fa-store-alt" },
+        {title: "ТУРИЗМ", icon: "fas fa-plane" },
+        {title: "УСЛУГИ", icon: "fab fa-aws" },
+        {title: "ФИНАНСЫ", icon: "fas fa-coins" }
+    ] %}
+
+
+
+    <div class="flex flex-col mx-auto p-4 leading-loose w-full lg:w-5/6">
+
+        <div class="flex flex-wrap justify-center mb-4">
+            {% for category in categories %}
+                <a class="text-center p-1 border rounded mx-1 mb-1 cursor-pointer">
+                    <p class="mb-1"><i class="{{ category.icon }} text-3xl text-black-light"></i></p>
+                    <p class="text-xs">{{ category.title }}</p>
+                </a>
+            {% endfor %}
+        </div>
+
+        <div class="search max-w-lg w-full flex items-center mb-4 mx-auto">
+            <input class="transition focus:outline-0 border bg-white focus:border-blue placeholder-grey-darkest rounded py-2 px-4 mr-2 block w-full appearance-none"
+                   type="text" placeholder="Поиск" value="Стоматология">
+            <button class="flex-no-shrink bg-blue hover:bg-blue-dark border-blue hover:border-blue-dark text-sm border-4 text-white py-1 px-3 rounded">
+                Найти
+            </button>
+        </div>
+        <div class="search-results flex flex-wrap justify-between">
+            {% set items = [
+                {
+                    title: "Консайз стоматология",
+                    street: "ул. Красина, 1",
+                    landmark: "Район автовокзала по пр.Абая",
+                    image: 'https://www.cityinfo.kz/assets/images/company_logo/konsize.png'
+                },
+                {
+                    title: "Hercules стоматологическая клиника",
+                    street: "ул. Белинского, 46",
+                    landmark: "",
+                    image: 'https://www.cityinfo.kz/assets/images/company_logo/3531.jpg'
+                },
+                {
+                    title: "Denta VIP ТОО",
+                    street: "ул. Октябрьская, 133",
+                    landmark: "",
+                    image: "https://www.cityinfo.kz/assets/images/min_company_logo.png"
+                },
+                {
+                    title: "Dental-Service Сеть стоматологических клиник",
+                    street: "пр. Победы, 3",
+                    landmark: "ЕНПФ ВКО",
+                    image: 'https://www.cityinfo.kz/assets/images/company_logo/1056.jpg'
+                },
+                {
+                    title: "STOMMAX стоматология",
+                    street: "ул. Крылова, 66",
+                    landmark: "",
+                    image: 'https://www.cityinfo.kz/assets/images/company_logo/3642.jpg'
+                },
+                {
+                    title: "Стоматология ТОО",
+                    street: "ул. Новаторов, 2",
+                    landmark: "угол ул. Кабанбай батыра и ул. Новаторов",
+                    image: 'https://www.cityinfo.kz/assets/images/company_logo/stomatologiya.jpg'
+                }
+            ] %}
+
+            {% for item in items %}
+                <div class="w-full sm:w-1/2 p-2">
+                    <a class="block no-underline search-result p-1 cursor-pointer border rounded-lg border-grey-light hover:bg-grey-lightest hover:shadow"
+                    href="/company-card.html">
+                        <div class="text-black text-center text-lg leading-none w-full py-2 mb-1">{{ item.title }}</div>
+                        <div class="flex items-center">
+                            <div class="flex items-center px-2"
+                                 title="Woman holding a mug">
+                                <img src="{{ item.image }}" class="object-none">
+                            </div>
+                            <div class="leading-normal">
+                                <div class="ml-2">
+                                    <p class="text-grey-darker">Адрес: {{ item.street }}</p>
+                                    <p class="text-grey-darker">{{ item.landmark }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    {% include "includes/banners_right.njk" %}
+{% endblock %}

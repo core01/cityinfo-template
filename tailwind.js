@@ -50,6 +50,7 @@ let colors = {
   'instagram': '#2b5c84',
 
   'black': '#22292f',
+  'black-light': '#303340',
   'grey-darkest': '#464646',
   'grey-darker': '#8C8C8C',
   'grey-dark': '#D3D3D3',
@@ -956,7 +957,7 @@ module.exports = {
   options: {
     prefix: '',
     important: false,
-    separator: '--'
+    separator: ':'
   }
 
 }
