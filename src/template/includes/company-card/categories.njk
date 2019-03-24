@@ -1,0 +1,11 @@
+<div class="w-full lg:w-1/2">
+    <div class="pl-4 py-2">
+        <div id="map" class="company-card-map"></div>
+        <div>
+            <h4 class="text-lg">Категории:</h4>
+            {% for category in item.categories %}
+                {{ category }}{% if not loop.last %},{% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

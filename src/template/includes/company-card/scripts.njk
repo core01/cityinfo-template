@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+      integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin=""/>
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
+<script>
+  const map = L.map('map').setView([{{ item.lat}}, {{ item.lon}}], 16)
+  L.tileLayer('https://citytorg.kz/osm/?z={z}&x={x}&y={y}&s={s}', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 18,
+  }).addTo(map)
+  const marker = L.marker([{{ item.lat}}, {{ item.lon}}]).addTo(map)
+
+</script>
+
+{% if item.photos %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1/dist/css/lightgallery.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1/dist/js/lightgallery.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('show-photos').addEventListener('click', function() {
+          lightGallery(document.getElementById('show-photos'), {
+            dynamic: true,
+            dynamicEl: [
+                {% for photo in item.photos %}
+              {
+                "src": '{{ photo }}'
+              }{% if not loop.last %},{% endif %}
+                {% endfor %}]
+          })
+
+        });
+      });
+    </script>
+{% endif %}
+<script src="/js/company-card.js"></script>

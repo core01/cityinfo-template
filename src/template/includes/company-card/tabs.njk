@@ -1,0 +1,20 @@
+<div class="w-full my-4">
+    <ul id="card-mode-toggle" class="list-reset flex">
+        <li>
+            <button
+              class="company-card-mode-toggle active border py-2 px-3 rounded cursor-pointer"
+              data-mode="info">
+                Информация
+            </button>
+        </li>
+        {% if item.prices %}
+            <li>
+                <button
+                  class="company-card-mode-toggle ml-2 border py-2 px-3 rounded cursor-pointer "
+                  data-mode="prices">
+                    Прайс-лист
+                </button>
+            </li>
+        {% endif %}
+    </ul>
+</div>

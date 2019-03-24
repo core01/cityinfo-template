@@ -1,0 +1,167 @@
+{% extends "layout/base.njk" %}
+    {% set item = {
+        title: "Dental-Service Сеть стоматологических клиник",
+        landmark: "ЕНПФ ВКО",
+        logo: 'https://www.cityinfo.kz/assets/images/company_logo/1056.jpg',
+        categories: [
+            'стоматологические услуги', 'стоматология'
+        ],
+        legal_name: 'Восток Контракт ТОО',
+        addresses: [
+            'пр. Победы, 3',
+            'ул. Виноградова,17',
+            'пр.Независимости, 40'
+        ],
+        phones: [
+            '+7(7232)25-62-89 (пр.Победы,3)',
+            '+7(7232)75-97-46 (ул.Виноградова,17)',
+            '+7(7232)61-79-90 (пр.Независимости, 40)'
+        ],
+        email: 'dental-service@list.ru',
+        working_hours: [
+            '09.00-19.00,б/о,субб.-09.00-18.00,(ул.Виноградова,17)',
+            '09.00-19.00,б/о,субб.-09.00-18.00,(пр.Независимости,40)',
+            '09.00-19.00,субб.-09.00-16.00, вск.-вых.(пр.Победы,3)'
+        ],
+        lat: 49.94455041,
+        lon: 82.61980290,
+        prices: true
+    } %}
+{% block content %}
+    <div class="w-full flex flex-wrap mx-auto company-card leading-normal py-4 px-8">
+        {% include "includes/company-card/title.njk" %}
+        {% include "includes/company-card/photo.njk" %}
+        {% include "includes/company-card/tabs.njk" %}
+        <div id="company-card-info" class="flex w-full">
+            {% include "includes/company-card/info.njk" %}
+            {% include "includes/company-card/categories.njk" %}
+        </div>
+        {% if item.prices %}
+        <div id="company-card-prices" style="display: none;">
+            <div id="firm-prices">
+                <div id="price_list_outer">
+                    <h4 class="has-text-centered">Прайс-лист компании Cityinfo справочная служба</h4>
+                    <div id="price_list_wrapper" class="dataTables_wrapper no-footer">
+                        <div class="DTTT_container"></div>
+                        <div class="clear"></div>
+                        <div class="dataTables_length" id="price_list_length"><label>Показать <select
+                                  name="price_list_length" aria-controls="price_list" class="">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select> записей</label></div>
+                        <div id="price_list_filter" class="dataTables_filter"><label>Поиск:<input type="search" class=""
+                                                                                                  placeholder=""
+                                                                                                  aria-controls="price_list"></label>
+                        </div>
+                        <table id="price_list" class="table dataTable no-footer" role="grid"
+                               aria-describedby="price_list_info">
+                            <thead>
+                            <tr role="row">
+                                <td class="sorting_asc" tabindex="0" aria-controls="price_list" rowspan="1" colspan="1"
+                                    aria-sort="ascending"
+                                    aria-label="№: активировать для сортировки столбца по убыванию"
+                                    style="width: 16px;">№
+                                </td>
+                                <td class="sorting" tabindex="0" aria-controls="price_list" rowspan="1" colspan="1"
+                                    aria-label="Артикул: активировать для сортировки столбца по возрастанию"
+                                    style="width: 56px;">Артикул
+                                </td>
+                                <td style="width: 250px;" class="sorting" tabindex="0" aria-controls="price_list"
+                                    rowspan="1" colspan="1"
+                                    aria-label="Наименование: активировать для сортировки столбца по возрастанию">
+                                    Наименование
+                                </td>
+                                <td class="sorting" tabindex="0" aria-controls="price_list" rowspan="1" colspan="1"
+                                    aria-label="Цена: активировать для сортировки столбца по возрастанию"
+                                    style="width: 35px;">Цена
+                                </td>
+                                <td class="sorting" tabindex="0" aria-controls="price_list" rowspan="1" colspan="1"
+                                    aria-label="Ед.Изм.: активировать для сортировки столбца по возрастанию"
+                                    style="width: 54px;">Ед.Изм.
+                                </td>
+                                <td class="sorting" tabindex="0" aria-controls="price_list" rowspan="1" colspan="1"
+                                    aria-label="Описание: активировать для сортировки столбца по возрастанию"
+                                    style="width: 247px;">Описание
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr class="group">
+                                <td colspan="8"></td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td style="border:1px solid  #ddd;" class="sorting_1">1</td>
+                                <td style="border:1px solid #ddd;">1</td>
+                                <td style="border:1px solid #ddd;">Single</td>
+                                <td style="border:1px solid  #ddd;">6000</td>
+                                <td style="border:1px solid  #ddd;">шт.</td>
+                                <td style="border:1px solid  #ddd;">наименование пре-я ,телефон ,факс ; адрес
+                                    пред-я,режим работы,ориентир; www,e-mail,ICQ,Skype;позиция до 20 видов;подпозиция до
+                                    20 видов;
+                                </td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td style="border:1px solid  #ddd;" class="sorting_1">2</td>
+                                <td style="border:1px solid #ddd;">2</td>
+                                <td style="border:1px solid #ddd;">Service</td>
+                                <td style="border:1px solid  #ddd;">6000</td>
+                                <td style="border:1px solid  #ddd;">шт.</td>
+                                <td style="border:1px solid  #ddd;">наименование пред-я,телефон,факс( не более 3
+                                    номеров); адрес пред-я (не более 1);режим работы ,ориентир; www,e-mail,ICQ ,Skype,
+                                    оперативная информация (курсы валют с ежедневным обновлением котировок+рассылка по
+                                    эл.почте );
+                                </td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td style="border:1px solid  #ddd;" class="sorting_1">3</td>
+                                <td style="border:1px solid #ddd;">4</td>
+                                <td style="border:1px solid #ddd;">Дополнительная услуга *приоритетное место в базе
+                                    данных ( с ротацией)
+                                </td>
+                                <td style="border:1px solid  #ddd;">1200</td>
+                                <td style="border:1px solid  #ddd;">шт.</td>
+                                <td style="border:1px solid  #ddd;">1 группа(месяц)</td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td style="border:1px solid  #ddd;" class="sorting_1">4</td>
+                                <td style="border:1px solid #ddd;">5</td>
+                                <td style="border:1px solid #ddd;">Дополнительная услуга *приоритетное место в базе
+                                    данных (с ротацией)
+                                </td>
+                                <td style="border:1px solid  #ddd;">800</td>
+                                <td style="border:1px solid  #ddd;">шт.</td>
+                                <td style="border:1px solid  #ddd;">2 и 3 группа</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="dataTables_info" id="price_list_info" role="status" aria-live="polite">Записи с 1 до
+                            4 из 4 записей
+                        </div>
+                        <div class="dataTables_paginate paging_simple_numbers" id="price_list_paginate"><a
+                              class="paginate_button previous disabled" aria-controls="price_list" data-dt-idx="0"
+                              tabindex="0" id="price_list_previous">Предыдущая</a><span><a
+                                  class="paginate_button current" aria-controls="price_list" data-dt-idx="1"
+                                  tabindex="0">1</a></span><a class="paginate_button next disabled"
+                                                              aria-controls="price_list" data-dt-idx="2" tabindex="0"
+                                                              id="price_list_next">Следующая</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+    {% include "includes/company-card/scripts.njk" %}
+    {% if item.prices %}
+        <link type="text/css" rel="stylesheet" href="https://www.cityinfo.kz/assets/dt/css/jquery.dataTables.min.css" />
+        <link type="text/css" rel="stylesheet" href="https://www.cityinfo.kz/assets/dt/css/buttons.dataTables.min.css" />
+        <link type="text/css" rel="stylesheet" href="https://www.cityinfo.kz/assets/dt/dataTables.tableTools.css" />
+    {% endif %}
+{% endblock %}

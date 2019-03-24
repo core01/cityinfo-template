@@ -1,0 +1,50 @@
+{% extends "layout/base.njk" %}
+{% set item = {
+    title: "Консайз стоматология ИП",
+    landmark: "район автовокзала по пр.Абая",
+    logo: 'https://www.cityinfo.kz/assets/images/company_logo/konsize.png',
+    categories: [
+        'стоматологические услуги'
+    ],
+    legal_name: 'Консайз стоматология ИП',
+    addresses: [
+        'ул. Красина, 1'
+    ],
+    phones: [
+        '+7(7232)22-15-98',
+        '+7(7232)22-58-68'
+    ],
+    email: 'konsize@mail.ru',
+    fax: '+7(7232)22-58-68',
+    mobile: '+7-705-401-23-44',
+    website: 'www.konsize.kz',
+    working_hours: [
+        '09.00-18.00, б/о, суб. ',
+        '09.00-15.00, вск.-вых'
+    ],
+    lat: 49.95956404,
+    lon: 82.61877635,
+    photos: [
+        "https://core.cityinfo.kz/images/2/18012018/oTXDhknDdEnGjiuGpT0YCL70XHTYZTksZljWVAWw.jpeg",
+        "https://core.cityinfo.kz/images/2/18012018/sGLaD6vFA40JZZnZrX4JlqahzArMA5w4rqqdNyDb.jpeg",
+        "https://core.cityinfo.kz/images/2/18012018/7dGPfF3cwUrshlGZfCGAxSrTrCA7xq5Q4v81m1Dj.jpeg"
+    ]
+} %}
+{% block content %}
+    <div class="w-full flex flex-wrap mx-auto company-card leading-normal py-4 px-8">
+        {% include "includes/company-card/title.njk" %}
+        {% include "includes/company-card/photo.njk" %}
+        {% include "includes/company-card/tabs.njk" %}
+        <div id="company-card-info" class="flex w-full">
+            {% include "includes/company-card/info.njk" %}
+            {% include "includes/company-card/categories.njk" %}
+        </div>
+        <div id="company-card-prices" style="display: none;">
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {% include "includes/company-card/scripts.njk" %}
+{% endblock %}

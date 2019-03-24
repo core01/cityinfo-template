@@ -53,44 +53,50 @@
                     title: "Консайз стоматология",
                     street: "ул. Красина, 1",
                     landmark: "Район автовокзала по пр.Абая",
-                    image: 'https://www.cityinfo.kz/assets/images/company_logo/konsize.png'
-                },
-                {
-                    title: "Hercules стоматологическая клиника",
-                    street: "ул. Белинского, 46",
-                    landmark: "",
-                    image: 'https://www.cityinfo.kz/assets/images/company_logo/3531.jpg'
-                },
-                {
-                    title: "Denta VIP ТОО",
-                    street: "ул. Октябрьская, 133",
-                    landmark: "",
-                    image: "https://www.cityinfo.kz/assets/images/min_company_logo.png"
+                    image: 'https://www.cityinfo.kz/assets/images/company_logo/konsize.png',
+                    link: '/company-card-2.html'
                 },
                 {
                     title: "Dental-Service Сеть стоматологических клиник",
                     street: "пр. Победы, 3",
                     landmark: "ЕНПФ ВКО",
-                    image: 'https://www.cityinfo.kz/assets/images/company_logo/1056.jpg'
+                    image: 'https://www.cityinfo.kz/assets/images/company_logo/1056.jpg',
+                    link: '/company-card.html'
+                },
+                {
+                    title: "Hercules стоматологическая клиника",
+                    street: "ул. Белинского, 46",
+                    landmark: "",
+                    image: 'https://www.cityinfo.kz/assets/images/company_logo/3531.jpg',
+                    link: '#'
+                },
+                {
+                    title: "Denta VIP ТОО",
+                    street: "ул. Октябрьская, 133",
+                    landmark: "",
+                    image: "https://www.cityinfo.kz/assets/images/min_company_logo.png",
+                    link: '#'
                 },
                 {
                     title: "STOMMAX стоматология",
                     street: "ул. Крылова, 66",
                     landmark: "",
-                    image: 'https://www.cityinfo.kz/assets/images/company_logo/3642.jpg'
+                    image: 'https://www.cityinfo.kz/assets/images/company_logo/3642.jpg',
+                    link: '#'
                 },
                 {
                     title: "Стоматология ТОО",
                     street: "ул. Новаторов, 2",
                     landmark: "угол ул. Кабанбай батыра и ул. Новаторов",
-                    image: 'https://www.cityinfo.kz/assets/images/company_logo/stomatologiya.jpg'
+                    image: 'https://www.cityinfo.kz/assets/images/company_logo/stomatologiya.jpg',
+                    link: '#'
                 }
             ] %}
 
             {% for item in items %}
                 <div class="w-full sm:w-1/2 p-2">
                     <a class="block no-underline search-result p-1 cursor-pointer border rounded-lg border-grey-light hover:bg-grey-lightest hover:shadow"
-                    href="/company-card.html">
+                    href="{{ item.link }}">
                         <div class="text-black text-center text-lg leading-none w-full py-2 mb-1">{{ item.title }}</div>
                         <div class="flex items-center">
                             <div class="flex items-center px-2"

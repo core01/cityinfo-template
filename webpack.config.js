@@ -27,9 +27,17 @@ const htmlPlugins = generateHtmlPlugins('./src/template')
 
 module.exports = (env, argv) => {
   return {
-    entry: ['./src/js/main.js', './src/css/main.pcss'],
+    entry: {
+      main: [
+        './src/js/main.js',
+        './src/css/main.pcss'
+      ],
+      'company-card': [
+        './src/js/company-card.js'
+      ]
+    },
     output: {
-      filename: './js/main.js'
+      filename: './js/[name].js'
     },
     devtool: 'source-map',
     module: {

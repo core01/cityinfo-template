@@ -1,0 +1,64 @@
+<div class="w-full lg:w-1/2">
+    <div class="pr-4">
+        <table class="company-card-table">
+            <tbody>
+            <tr>
+                <th>Юридическое наименование:</th>
+                <td>{{ item.legal_name }}</td>
+            </tr>
+            <tr>
+                <th>Адрес:</th>
+                <td>
+                    {% for address in item.addresses %}
+                        <p>{{ address }}</p>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Телефон:</th>
+                <td>
+                    {% for phone in item.phones %}
+                        <p>{{ phone }}</p>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% if item.fax %}
+            <tr>
+                <th>Факс:</th>
+                <td>{{  item.fax }}</td>
+            </tr>
+            {% endif %}
+            {% if item.mobile %}
+            <tr>
+                <th>Сотовый:</th>
+                <td>{{  item.mobile }}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <th>Email:</th>
+                <td>{{ item.email }}</td>
+            </tr>
+            {% if item.website %}
+            <tr>
+                <th>Сайт:</th>
+                <td>{{ item.website }}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <th>Режим работы:</th>
+                <td>
+                    {% for hours in item.working_hours %}
+                        <p>{{ hours }}</p>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Ориентир:</th>
+                <td>
+                    {{ item.landmark }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

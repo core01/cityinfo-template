@@ -68,6 +68,10 @@ input:focus {
   outline: none;
 }
 
+table th {
+  text-align: left;
+}
+
 .slide-text {
   left: 15px;
   bottom: 25px;
@@ -134,4 +138,65 @@ input:focus {
 
 .search-result img {
   max-height: 4rem;
+}
+
+.company-card-logo img {
+  height: 4rem;
+}
+
+.company-card-photo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: 1px solid config("colors.grey-dark");
+  border-radius: .25rem;
+  position: relative;
+  z-index: 2;
+}
+
+.company-card-photo-counter {
+  background-color: config("colors.white");
+  border-radius: 9999px;
+  width: 4.5rem;
+  height: 4.5rem;
+  color: config("colors.black");
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.company-card-table {
+  table-layout: fixed;
+}
+
+.company-card-table tr:last-child td, .company-card-table tr:last-child th {
+  border-bottom: none;
+}
+
+.company-card-table th, .company-card-table td {
+  border-bottom: 1px solid config("colors.grey-dark");
+  padding: 0.5rem;
+  white-space: normal;
+}
+
+.company-card-map {
+  height: 280px;
+  margin-bottom: 1em;
+}
+
+.company-card-mode-toggle {
+  border-color: config("colors.grey-darker");
+}
+
+.company-card-mode-toggle:hover {
+  border-color: config("colors.lightseagreen-dark");
+}
+
+.company-card-mode-toggle.active {
+  border-color: config("colors.lightseagreen-dark");
+  background-color: config("colors.lightseagreen-dark");
+  color: white;
 }
