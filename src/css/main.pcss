@@ -80,16 +80,15 @@ table th {
 .courses-table {
   width: 100%;
   line-height: 1.5rem;
-}
 
-.courses-table th {
-  padding: 0.25rem;
-}
+  th {
+    padding: 0.25rem;
+  }
 
-.courses-table td,
-.courses-table th {
-  text-align: center;
-  border: 1px solid config("textColors.grey-dark");
+  td, th {
+    text-align: center;
+    border: 1px solid config("textColors.grey-dark");
+  }
 }
 
 .course-date :first-child {
@@ -134,10 +133,10 @@ table th {
 .search-result {
   min-height: 8rem;
   max-height: 8rem;
-}
 
-.search-result img {
-  max-height: 4rem;
+  img {
+    max-height: 4rem;
+  }
 }
 
 .company-card-logo img {
@@ -170,16 +169,16 @@ table th {
 
 .company-card-table {
   table-layout: fixed;
-}
 
-.company-card-table tr:last-child td, .company-card-table tr:last-child th {
-  border-bottom: none;
-}
+  th, td {
+    border-bottom: 1px solid config("colors.grey-dark");
+    padding: 0.5rem;
+    white-space: normal;
+  }
 
-.company-card-table th, .company-card-table td {
-  border-bottom: 1px solid config("colors.grey-dark");
-  padding: 0.5rem;
-  white-space: normal;
+  tr:last-child td, tr:last-child th {
+    border-bottom: none;
+  }
 }
 
 .company-card-map {
@@ -199,4 +198,70 @@ table th {
   border-color: config("colors.lightseagreen-dark");
   background-color: config("colors.lightseagreen-dark");
   color: white;
+}
+
+.plate {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  cursor: pointer;
+}
+
+.plate--site {
+  background-color: config("colors.grey-light");
+  color: config("colors.black");
+}
+
+.plate--site:hover {
+  background-color: config("colors.grey-dark");
+}
+
+.plate--main-page {
+  margin: 0.5rem;
+  padding: 0.5rem 0.25rem;
+  height: 120px;
+  justify-content: center;
+}
+
+.plate--search-page {
+  padding: 0.25rem;
+  margin-right: 0.25rem;
+  margin-left: 0.25rem;
+  margin-bottom: 0.5rem;
+  width: 100px;
+  height: 75px;
+  justify-content: center;
+  align-items: center;
+
+  .plate__icon {
+    font-size: 1.875rem;
+    margin-bottom: .25rem;
+  }
+
+  .plate__title {
+    font-size: .65rem;
+    margin-bottom: 0;
+    margin-top: 0;
+    font-weight: normal;
+  }
+}
+
+.plate--search {
+  background-color: config("colors.lightseagreen");
+  line-height: 1.2;
+  color: config("colors.white");
+}
+
+.plate--search:hover {
+  background-color: config("colors.orange");
+}
+
+.plate__icon {
+  font-size: 3rem;
+}
+
+.plate__title {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
 }

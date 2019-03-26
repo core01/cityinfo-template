@@ -1,5 +1,6 @@
 {% extends "layout/base.njk" %}
 {% block content %}
+
     {% set categories = [
         {title: "АВТОМОБИЛИ", icon: "fas fa-car"},
         {title: "БЕЗОПАСНОСТЬ", icon: "fas fa-user-shield" },
@@ -27,23 +28,24 @@
         {title: "ФИНАНСЫ", icon: "fas fa-coins" }
     ] %}
 
-
-
     <div class="flex flex-col mx-auto p-4 leading-loose w-full lg:w-5/6">
-
         <div class="flex flex-wrap justify-center mb-4">
             {% for category in categories %}
-                <a class="text-center p-1 border rounded mx-1 mb-1 cursor-pointer">
-                    <p class="mb-1"><i class="{{ category.icon }} text-3xl text-black-light"></i></p>
-                    <p class="text-xs">{{ category.title }}</p>
+                <a class="search-category plate plate--search plate--search-page">
+                    <div class="plate__icon">
+                        <i class="{{ category.icon }}"></i>
+                    </div>
+                    <h4 class="plate__title">{{ category.title }}</h4>
                 </a>
             {% endfor %}
         </div>
 
         <div class="search max-w-lg w-full flex items-center mb-4 mx-auto">
-            <input class="transition focus:outline-0 border bg-white focus:border-blue placeholder-grey-darkest rounded py-2 px-4 mr-2 block w-full appearance-none"
-                   type="text" placeholder="Поиск" value="Стоматология">
-            <button class="flex-no-shrink bg-blue hover:bg-blue-dark border-blue hover:border-blue-dark text-sm border-4 text-white py-1 px-3 rounded">
+            <input
+              class="transition focus:outline-0 border border-grey-dark bg-white focus:border-blue placeholder-grey-darkest py-2 px-4 mr-2 block w-full appearance-none"
+              type="text" placeholder="Поиск" value="Стоматология">
+            <button
+              class="flex-no-shrink bg-lightseagreen hover:bg-orange border-lightseagreen hover:border-lightseagreen text-sm text-white py-2 px-4">
                 Найти
             </button>
         </div>
@@ -95,8 +97,9 @@
 
             {% for item in items %}
                 <div class="w-full sm:w-1/2 p-2">
-                    <a class="block no-underline search-result p-1 cursor-pointer border rounded-lg border-grey-light hover:bg-grey-lightest hover:shadow"
-                    href="{{ item.link }}">
+                    <a
+                      class="block no-underline search-result p-1 cursor-pointer border border-grey-light hover:bg-grey-lightest hover:shadow"
+                      href="{{ item.link }}">
                         <div class="text-black text-center text-lg leading-none w-full py-2 mb-1">{{ item.title }}</div>
                         <div class="flex items-center">
                             <div class="flex items-center px-2"

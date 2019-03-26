@@ -19,9 +19,10 @@ const purgeCSS = require('@fullhuman/postcss-purgecss')({
   ]
 })
 
+const nested = require('postcss-nested');
+const atImport = require('postcss-import')
+const each = require('postcss-each')
 const simpleVars = require('postcss-simple-vars')
-const cssImport = require('postcss-import')
-const cssEach = require('postcss-each')
 const autoprefixer = require('autoprefixer')({
   browsers: ['last 2 versions', 'iOS >= 8']
 })
@@ -36,7 +37,7 @@ const cssnano = require('cssnano')({
   ]
 })
 
-const plugins = [tailwind, cssImport, cssEach, simpleVars]
+const plugins = [tailwind,nested, atImport, each, simpleVars]
 
 module.exports = ({ options }) => {
   if (options.mode === 'production') {
