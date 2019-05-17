@@ -6,13 +6,19 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
     "@fullhuman/postcss-purgecss": "^1.1.0",
+    "@types/dotenv": "^6.1.1",
+    "@types/node": "^12.0.2",
+    "@types/react": "^16.8.17",
+    "@types/react-dom": "^16.8.4",
+    "@types/socket.io-client": "^1.4.32",
     "autoprefixer": "^9.5.0",
-    "babel-core": "^6.26.3",
     "babel-loader": "^8.0.5",
-    "babel-preset-env": "^1.7.0",
     "copy-webpack-plugin": "^5.0.2",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
@@ -38,6 +44,9 @@
     "postcss-simple-vars": "^5.0.2",
     "pug": "^2.0.3",
     "pug-html-loader": "^1.1.5",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-hot-loader": "^4.8.4",
     "tailwindcss": "^0.7.4",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
@@ -46,7 +55,13 @@
   "scripts": {
     "build": "webpack --mode production && html dist/*.html --indent-size 2",
     "build-demo": "webpack --mode development && html dist/*.html --indent-size 2",
-    "dev": "webpack-dev-server --mode development --open",
+    "dev": "webpack-dev-server --mode development",
     "lintfix": "eslint --ext .js --ignore-path .gitignore . --fix"
+  },
+  "dependencies": {
+    "dotenv-webpack": "^1.7.0",
+    "fs": "^0.0.1-security",
+    "socket.io-client": "^2.2.0",
+    "typescript": "^3.4.5"
   }
 }

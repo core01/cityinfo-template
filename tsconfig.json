@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es6",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "baseUrl": "./src/app",
+    "lib": ["es5", "es6", "dom"]
+  }
+}
