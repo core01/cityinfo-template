@@ -1,40 +1,35 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
-import './App.css';
-import * as socketIOClient from 'socket.io-client';
+import ExchangeTable from './components/ExchangeTable';
 
-export interface Props {
+interface Props {
+  initialData?: {
+    retailCityId: number,
+    wholesaleCityId: number,
+  }
 }
 
 interface State {
-  endpoint: string;
-  response: {
-    name?: string
-  },
+  retailCityId: number,
+  wholesaleCityId: number,
 }
 
-class App extends React.Component<Props, State>  {
-  constructor (props: Props) {
-    super(props);
-    this.state = {
-      endpoint: process.env.SOCKET_URL,
-      response: { },
-    };
-  }
+class App extends React.Component<Props, State> {
 
-  componentDidMount () {
-    const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
-    socket.emit('test', 'this is test data emitted from frontend');
-    socket.on('update', (data:any) => {
-      this.setState({response: data});
-    })
-  }
+  state = {
+    retailCityId: this.props.initialData.retailCityId ? this.props.initialData.retailCityId : 4,
+    wholesaleCityId: this.props.initialData.wholesaleCityId ? this.props.initialData.wholesaleCityId : 5,
+  };
 
   render () {
     return (
-      <div className="App">
-        { this.state.response.name ? <h1>{ this.state.response.name}</h1> : <h1>Нет данных</h1>}
+      <div className="flex">
+        <div className="w-1/2">
+          <ExchangeTable retailCityId = {this.state.retailCityId} wholesaleCityId={this.state.wholesaleCityId}/>
+        </div>
+        <div className="w-1/2">
+          <div className="map"></div>
+        </div>
       </div>
     );
   }

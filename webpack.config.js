@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const fs = require('fs');
 const Dotenv = require('dotenv-webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const generateHtmlPlugins = templateDir => {
   const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir));
@@ -28,10 +29,11 @@ const htmlPlugins = generateHtmlPlugins('./src/template');
 
 module.exports = (env, argv) => {
   return {
+    mode: argv.mode === 'production' ? 'production' : 'development',
     entry: {
       main: [
         './src/js/main.js',
-        './src/css/main.pcss',
+        './src/css/main.css',
       ],
       'company-card': [
         './src/js/company-card.js',
@@ -47,14 +49,13 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
-          test: /\.(js|ts|tsx)$/,
+          test: /\.js$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
             options: {
               presets: [
                 '@babel/preset-typescript',
-                '@babel/preset-react',
                 [
                   '@babel/preset-env',
                   {
@@ -62,14 +63,47 @@ module.exports = (env, argv) => {
                   },
                 ],
               ],
+            },
+          },
+        },
+        {
+          test: /\.(ts|tsx)$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-typescript',
+                '@babel/preset-react',
+                '@babel/preset-env',
+              ],
               plugins: [
                 'react-hot-loader/babel',
+                'react-css-modules',
+                ['@babel/plugin-proposal-class-properties', { 'loose': true }],
               ],
             },
           },
         },
         {
-          test: /\.(css|pcss)$/,
+          test: /\.module\.css$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: 'style-loader',
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                modules: true,
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
+            },
+          ],
+        },
+        {
+          test: /^(?!.*?\.module).*\.css$/,
           exclude: /node_modules/,
           use: [
             {
@@ -80,7 +114,9 @@ module.exports = (env, argv) => {
             },
             {
               loader: 'css-loader',
-              options: { importLoaders: 1 },
+              options: {
+                importLoaders: 1,
+              },
             },
             {
               loader: 'postcss-loader',
@@ -125,6 +161,12 @@ module.exports = (env, argv) => {
         },
       ]),
       new Dotenv(),
+
     ].concat(htmlPlugins),
+    optimization: {
+      minimizer: [new UglifyJSPlugin({
+        extractComments: 'all',
+      })],
+    },
   };
 };
