@@ -24,10 +24,10 @@ class App extends React.Component<Props, State> {
   render () {
     return (
       <div className="flex">
-        <div className="w-1/2">
+        <div className="w-4/6">
           <ExchangeTable retailCityId = {this.state.retailCityId} wholesaleCityId={this.state.wholesaleCityId}/>
         </div>
-        <div className="w-1/2">
+        <div className="w-1/3">
           <div className="map"></div>
         </div>
       </div>

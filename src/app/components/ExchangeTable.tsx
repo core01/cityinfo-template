@@ -3,8 +3,11 @@ import * as React from 'react';
 import styles from './ExchangeTable.module.css';
 import * as socketIOClient from 'socket.io-client';
 import axios from 'axios';
-import * as dayjs from 'dayjs';
 import ExchangeRate from './ExchangeRate';
+
+interface BestCourses {
+  [key: string]: number
+}
 
 interface Props {
   retailCityId: number,
@@ -15,7 +18,9 @@ interface State {
   selectedCurrencies: string[],
   sortBy: string,
   retailRates: exchangeRate[],
+  retailRatesBest: BestCourses,
   wholesaleRates: exchangeRate[],
+  wholesaleRatesBest: BestCourses,
 }
 
 class ExchangeTable extends React.Component<Props, State> {
@@ -36,6 +41,9 @@ class ExchangeTable extends React.Component<Props, State> {
     sortBy: 'date_update',
     retailRates: [],
     wholesaleRates: [],
+    retailRatesBest: {},
+    wholesaleRatesBest: {},
+
   };
 
   static sortRates (sortBy: string) {
@@ -49,7 +57,9 @@ class ExchangeTable extends React.Component<Props, State> {
     ]).then(responses => {
       this.setState({
         retailRates: responses[0].data.rates,
-        wholesaleRates: responses[0].data.rates,
+        retailRatesBest: responses[0].data.best,
+        wholesaleRates: responses[1].data.rates,
+        wholesaleRatesBest: responses[1].data.best,
       });
     });
   }
@@ -74,11 +84,13 @@ class ExchangeTable extends React.Component<Props, State> {
     });
 
     const retailRows = this.state.retailRates.map(rate => {
-      return <ExchangeRate rate={rate} currencies={this.state.selectedCurrencies} key={rate.id}/>;
+      return <ExchangeRate rate={rate} currencies={this.state.selectedCurrencies} key={rate.id}
+                           best={this.state.retailRatesBest}/>;
     });
 
     const wholesaleRows = this.state.wholesaleRates.map(rate => {
-      return <ExchangeRate rate={rate} currencies={this.state.selectedCurrencies} key={rate.id}/>;
+      return <ExchangeRate rate={rate} currencies={this.state.selectedCurrencies} key={rate.id}
+                           best={this.state.wholesaleRatesBest}/>;
     });
 
     let retailTitle = null;
@@ -101,8 +113,7 @@ class ExchangeTable extends React.Component<Props, State> {
       <table className={styles.Table}>
         <thead>
         <tr>
-          <th rowSpan={2}>Обменный пункт / Время обновления</th>
-          <th rowSpan={2}>Время</th>
+          <th rowSpan={2}>Обменный пункт</th>
           {flags}
         </tr>
         <tr>

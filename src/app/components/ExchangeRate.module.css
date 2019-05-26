@@ -1,0 +1,29 @@
+.Title {
+  color: #3677ad;
+  text-decoration: none;
+  font-size: 0.8125rem;
+  display: block;
+}
+
+.BestBuy {
+  font-weight: bold;
+  color: maroon;
+}
+
+.BestSell {
+  color: #0c14b2;
+  font-weight: bold;
+}
+
+.Date {
+  font-size: 0.6875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.Info{
+  font-size: 0.6875rem;
+  font-style: normal;
+  display: block;
+}
