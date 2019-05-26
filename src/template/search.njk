@@ -40,12 +40,12 @@
             {% endfor %}
         </div>
 
-        <div class="search max-w-lg w-full flex items-center mb-4 mx-auto">
+        <div class="search max-w-xl leading-tight w-full flex items-center mb-4 mx-auto">
             <input
-              class="transition focus:outline-0 border border-grey-dark bg-white focus:border-blue placeholder-grey-darkest py-2 px-4 mr-2 block w-full appearance-none"
+              class="transition focus:outline-0 border border-gray-600 bg-white focus:border-blue placeholder-gray-800 py-2 px-4 mr-2 block w-full appearance-none"
               type="text" placeholder="Поиск" value="Стоматология">
             <button
-              class="flex-no-shrink bg-pelorous hover:bg-orange border-pelorous hover:border-pelorous text-sm text-white py-2 px-4">
+              class="flex-shrink-0 bg-pelorous-500 hover:bg-orange-500 border-pelorous-500 hover:border-pelorous-500 text-sm text-white py-2 px-4">
                 Найти
             </button>
         </div>
@@ -98,18 +98,17 @@
             {% for item in items %}
                 <div class="w-full sm:w-1/2 p-2">
                     <a
-                      class="block no-underline search-result p-1 cursor-pointer border border-grey-light hover:bg-grey-lightest hover:shadow"
+                      class="block search-result p-1 cursor-pointer border border-gray-400 hover:bg-gray-100 hover:shadow"
                       href="{{ item.link }}">
                         <div class="text-black text-center text-lg leading-none w-full py-2 mb-1">{{ item.title }}</div>
                         <div class="flex items-center">
-                            <div class="flex items-center px-2"
-                                 title="Woman holding a mug">
-                                <img src="{{ item.image }}" class="object-none">
+                            <div class="flex items-center px-2">
+                                <img src="{{ item.image }}" class="object-fill">
                             </div>
                             <div class="leading-normal">
                                 <div class="ml-2">
-                                    <p class="text-grey-darker">Адрес: {{ item.street }}</p>
-                                    <p class="text-grey-darker">{{ item.landmark }}</p>
+                                    <p class="text-gray-700">Адрес: {{ item.street }}</p>
+                                    <p class="text-gray-700">{{ item.landmark }}</p>
                                 </div>
                             </div>
                         </div>
