@@ -1,4 +1,4 @@
-const tailwind = require('tailwindcss')('./tailwind.js');
+const tailwind = require('tailwindcss')('./tailwind.config.js');
 const purgeCSS = require('@fullhuman/postcss-purgecss')({
   content: [
     './src/template/**/*.njk',

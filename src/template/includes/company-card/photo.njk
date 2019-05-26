@@ -7,7 +7,7 @@
     >
         <div id="show-photos" class="company-card-photo-counter flex-col leading-none {% if photos %}cursor-pointer{% endif %}">
             {% if photos %}
-                <a class="no-underline text-lg text-black">{{ photos | length }}</a>
+                <a class="text-lg text-black">{{ photos | length }}</a>
                 <span class="text-xs">фото</span>
             {% else %}
                 нет фото
