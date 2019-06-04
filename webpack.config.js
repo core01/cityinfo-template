@@ -78,9 +78,9 @@ module.exports = (env, argv) => {
                 '@babel/preset-env',
               ],
               plugins: [
-                'react-hot-loader/babel',
                 'react-css-modules',
                 ['@babel/plugin-proposal-class-properties', { 'loose': true }],
+                'react-hot-loader/babel',
               ],
             },
           },
@@ -104,7 +104,6 @@ module.exports = (env, argv) => {
         },
         {
           test: /^(?!.*?\.module).*\.css$/,
-          exclude: /node_modules/,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,

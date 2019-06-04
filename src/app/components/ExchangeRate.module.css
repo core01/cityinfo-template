@@ -1,8 +1,15 @@
-.Title {
-  color: #3677ad;
-  text-decoration: none;
-  font-size: 0.8125rem;
-  display: block;
+.PhonesColumn {
+  width: 130px;
+  text-align: center;
+}
+
+.PointColumn {
+  width: 250px;
+  text-align: center;
+}
+
+.CurrencyCell {
+  width: 60px;
 }
 
 .BestBuy {
@@ -16,14 +23,11 @@
 }
 
 .Date {
-  font-size: 0.6875rem;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-.Info{
-  font-size: 0.6875rem;
-  font-style: normal;
-  display: block;
+.Info {
+  margin: .25rem auto;
 }

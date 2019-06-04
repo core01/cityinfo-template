@@ -10,58 +10,111 @@ interface BestCourses {
 }
 
 interface Props {
-  retailCityId: number,
-  wholesaleCityId: number,
+  rates: exchangeRate[],
+  best: BestCourses,
+  mode: string,
+  setMode: Function,
 }
 
 interface State {
-  selectedCurrencies: string[],
+  selectedCurrency: string,
   sortBy: string,
-  retailRates: exchangeRate[],
-  retailRatesBest: BestCourses,
-  wholesaleRates: exchangeRate[],
-  wholesaleRatesBest: BestCourses,
+  rates: exchangeRate[],
+  filteredRates: exchangeRate[],
+  filterQuery: string,
 }
 
 class ExchangeTable extends React.Component<Props, State> {
+
+  constructor (props: Props) {
+    super(props);
+    this.setState({rates: props.rates});
+    this.changeCurrency = this.changeCurrency.bind(this);
+    this.filterRates = this.filterRates.bind(this);
+  }
+
   currencies: {
     [key: string]: string
   } = {
-    'USD': 'https://cityinfo.kz/assets/images/flags/flag_usa_1.png',
-    'EUR': 'https://cityinfo.kz/assets/images/flags/European%20Union_1.png',
-    'RUB': 'https://cityinfo.kz/assets/images/flags/flag_russia_1.png',
+    'USD': 'https://www.cityinfo.kz/assets/images/flags/flag_usa_1.png',
+    'EUR': 'https://www.cityinfo.kz/assets/images/flags/European%20Union_1.png',
+    'RUB': 'https://www.cityinfo.kz/assets/images/flags/flag_russia_1.png',
     'CNY': 'https://www.cityinfo.kz/assets/images/flags/flag_china_1.png',
     'GBP': 'https://www.cityinfo.kz/assets/images/flags/flag_gb_1.png',
   };
 
   state: State = {
-    selectedCurrencies: [
-      'USD', 'EUR', 'RUB',
-    ],
+    selectedCurrency: 'USD',
     sortBy: 'date_update',
-    retailRates: [],
-    wholesaleRates: [],
-    retailRatesBest: {},
-    wholesaleRatesBest: {},
-
+    filteredRates: [],
+    filterQuery: '',
+    rates: this.props.rates,
   };
 
-  static sortRates (sortBy: string) {
-    console.log(sortBy);
-  };
+  changeCurrency (event: any) {
+    this.setState({ selectedCurrency: event.target.value });
+  }
 
-  componentWillMount (): void {
-    axios.all([
-      axios.get(process.env.API_URL + '/courses/' + this.props.retailCityId),
-      axios.get(process.env.API_URL + '/courses/' + this.props.wholesaleCityId),
-    ]).then(responses => {
-      this.setState({
-        retailRates: responses[0].data.rates,
-        retailRatesBest: responses[0].data.best,
-        wholesaleRates: responses[1].data.rates,
-        wholesaleRatesBest: responses[1].data.best,
+  filterRates (event: any) {
+    const value = event.target.value.toLowerCase();
+    let filteredRates: exchangeRate[] = [];
+    if (value.length > 0) {
+      filteredRates = this.props.rates.filter(rate => {
+        return rate.info.toLowerCase().indexOf(value) !== -1 || rate.name.toLowerCase().indexOf(value) !== -1;
       });
-    });
+    }
+    this.setState({ filteredRates: filteredRates, filterQuery: value });
+  }
+
+  private sortRates (): void {
+    const sortBy = this.state.sortBy;
+    console.log('sortRates fired', sortBy);
+
+    let rates: exchangeRate[] = this.state.rates;
+
+    if (sortBy.substr(0, 3) === 'sel') {
+      let zeroedRates: exchangeRate[] = [];
+      const filteredRates = rates.filter(rate => {
+        if (rate[sortBy] === 0) {
+          zeroedRates.push(rate);
+          return false;
+        }
+        return true;
+
+      });
+      filteredRates.sort((first, second) => {
+        if (first[sortBy] > second[sortBy] || (first[sortBy] === 0)) {
+          return 1;
+        }
+        if (first[sortBy] < second[sortBy]) {
+          return -1;
+        }
+        if (first[sortBy] === 0 && second[sortBy] > 0) {
+          return 1;
+        }
+        if (first[sortBy] > 0 && second[sortBy] === 0) {
+          return -1;
+        }
+
+        return 0;
+      });
+
+      rates = filteredRates.concat(zeroedRates);
+    } else {
+
+      rates.sort((first, second) => (first[sortBy] < second[sortBy]) ? 1 : first[sortBy] > second[sortBy] ? -1 : 0);
+
+    }
+
+    this.setState({ rates: rates });
+  };
+
+  sortRatesBy (field: string) {
+    this.setSortBy(field, this.sortRates);
+  }
+
+  private setSortBy (field: string, callback: () => void) {
+    this.setState({ sortBy: field }, callback);
   }
 
   componentDidMount () {
@@ -74,74 +127,107 @@ class ExchangeTable extends React.Component<Props, State> {
     });
   }
 
+  switchMode (mode: string) {
+    this.props.setMode(mode);
+    this.setState({
+      filteredRates: [],
+    });
+    this.sortRates();
+  }
+
   render () {
-    const flags = this.state.selectedCurrencies.map((currency) => {
-      return (
-        <th colSpan={2} key={currency}>
-          <img src={this.currencies[currency]} alt={currency}/> {currency}
-        </th>
-      );
-    });
-
-    const retailRows = this.state.retailRates.map(rate => {
-      return <ExchangeRate rate={rate} currencies={this.state.selectedCurrencies} key={rate.id}
-                           best={this.state.retailRatesBest}/>;
-    });
-
-    const wholesaleRows = this.state.wholesaleRates.map(rate => {
-      return <ExchangeRate rate={rate} currencies={this.state.selectedCurrencies} key={rate.id}
-                           best={this.state.wholesaleRatesBest}/>;
-    });
-
-    let retailTitle = null;
-    if (retailRows) {
-      retailTitle = (<tr>
-        <td colSpan={8} className='text-center'>
-          <h5>Розничные курсы</h5>
-        </td>
-      </tr>);
+    let rates = this.state.rates;
+    let best: BestCourses;
+    let title = 'Розничные курсы';
+    if (this.props.mode === 'wholesale') {
+      title = 'Оптовые курсы';
     }
-    let wholesaleTitle = null;
-    if (wholesaleRows) {
-      wholesaleTitle = (<tr>
-        <td colSpan={8} className='text-center'>
-          <h5>Оптовые курсы</h5>
-        </td>
-      </tr>);
+
+    if (this.state.filterQuery.length > 0) {
+      rates = this.state.filteredRates;
+
+      if (this.state.filteredRates.length < 1) {
+        title = 'Ничего не найдено';
+      }
     }
+
+    const rows = rates.map(rate => {
+      return <ExchangeRate rate={rate} currency={this.state.selectedCurrency} key={rate.id}
+                           best={best}/>;
+    });
+
     return (
       <table className={styles.Table}>
         <thead>
         <tr>
-          <th rowSpan={2}>Обменный пункт</th>
-          {flags}
+          <th colSpan={5}>
+            <h4 className="text-xl font-normal">Курсы обмена валюты в г. Усть-Каменогорск</h4>
+          </th>
         </tr>
         <tr>
-          <th>
-            <button onClick={ExchangeTable.sortRates.bind(this, 'usdb')}>покуп</button>
+          <th className="bg-red-500 cursor-pointer" onClick={this.switchMode.bind(this, 'retail')}>
+            Розница
           </th>
-          <th>
-            <button onClick={ExchangeTable.sortRates.bind(this, 'usds')}>прод</button>
+          <th className="bg-green-500 cursor-pointer" onClick={this.switchMode.bind(this, 'wholesale')}>
+            Опт
           </th>
-          <th>
-            <button onClick={ExchangeTable.sortRates.bind(this, 'eurb')}>покуп</button>
+          <th colSpan={3}>
+            <div className="flex justify-around">
+              <label className="block align-middle py-1">Поиск </label>
+              <input
+                type="text"
+                className="border p-1 border-black inline w-32 h-6 py-1 block"
+                onChange={this.filterRates}
+              />
+            </div>
           </th>
-          <th>
-            <button onClick={ExchangeTable.sortRates.bind(this, 'eurs')}>прод</button>
+        </tr>
+        <tr>
+          <th
+            rowSpan={2}
+            colSpan={2}
+            className={styles.PointColumn}
+            onClick={this.sortRatesBy.bind(this, 'date_update')}
+          >
+            Обменный пункт
           </th>
-          <th>
-            <button onClick={ExchangeTable.sortRates.bind(this, 'rubb')}>покуп</button>
+          <th rowSpan={2} className={styles.PhonesColumn}>Телефоны</th>
+          <th colSpan={2}>
+            <img
+              className="align-middle inline-block mr-2"
+              src={this.currencies[this.state.selectedCurrency]}
+              alt={this.state.selectedCurrency}/>
+            <select name="currency" id="currency" value={this.state.selectedCurrency} onChange={this.changeCurrency}>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="RUB">RUB</option>
+              <option value="CNY">CNY</option>
+              <option value="GBP">GBP</option>
+            </select>
           </th>
-          <th>
-            <button onClick={ExchangeTable.sortRates.bind(this, 'rubs')}>прод</button>
+        </tr>
+        <tr>
+          <th
+            className={styles.CurrencyColumn}
+            onClick={this.sortRatesBy.bind(this, 'buy' + this.state.selectedCurrency)}
+          >
+            покуп
+          </th>
+          <th
+            className={styles.CurrencyColumn}
+            onClick={this.sortRatesBy.bind(this, 'sell' + this.state.selectedCurrency)}
+          >
+            прод
           </th>
         </tr>
         </thead>
         <tbody>
-        {retailTitle}
-        {retailRows}
-        {wholesaleTitle}
-        {wholesaleRows}
+        <tr>
+          <td colSpan={5} className={[styles.TitleRow, 'text-center'].join(' ')}>
+            <h5 className="text-xl">{title}</h5>
+          </td>
+        </tr>
+        {rows}
         </tbody>
       </table>
     );

@@ -11,11 +11,11 @@ declare interface exchangeRate {
   sellCNY: number,
   buyGBP: number,
   info: string,
-  phones: string,
+  phones: string | string[],
   date_update: number,
   day_and_night: number,
   published: number,
   city_id: number,
 
-  [key: string]: string | number;
+  [key: string]: string | number | string[];
 }

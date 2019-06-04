@@ -265,3 +265,8 @@ table th {
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
+
+.leaflet-container {
+  height: 100vh;
+  width: 100%;
+}

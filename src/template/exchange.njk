@@ -1,5 +1,6 @@
 {% extends "layout/base.njk" %}
 {% block styles %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css">
 {% endblock %}
 {% block content %}
 <div class="flex flex-wrap lg:inline-flex p-4 mx-auto">
@@ -68,8 +69,8 @@
 {% block scripts %}
   <script>
     window.initialData = {
-      retailCityId: 4,
-      wholesaleCityId: 5,
+      retailCityId: 2,
+      wholesaleCityId: 7,
     };
   </script>
   <script src="/js/app.js"></script>
