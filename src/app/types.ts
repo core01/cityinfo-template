@@ -16,6 +16,9 @@ declare interface exchangeRate {
   day_and_night: number,
   published: number,
   city_id: number,
+  company_id: number,
+  longitude: number,
+  latitude: number,
 
   [key: string]: string | number | string[];
 }

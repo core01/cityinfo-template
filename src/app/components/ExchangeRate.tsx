@@ -10,6 +10,7 @@ interface Props {
   best: {
     [key: string]: number
   },
+  selectPoint: Function,
 }
 
 const ExchangeRate = (props: Props) => {
@@ -41,7 +42,7 @@ const ExchangeRate = (props: Props) => {
     );
   });
   return (
-    <tr key={props.rate.id} className="hover:bg-green-200 cursor-pointer">
+    <tr key={props.rate.id} className="hover:bg-green-200 cursor-pointer" onClick={props.selectPoint.bind(this, props.rate.id)}>
       <td className={styles.PointColumn} colSpan={2}>
         <p className={styles.Title}>
           {props.rate.name}
