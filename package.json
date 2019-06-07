@@ -64,6 +64,7 @@
     "lintfix": "eslint --ext .js --ignore-path .gitignore . --fix"
   },
   "dependencies": {
+    "2gis-maps": "^3.5.6",
     "awesome-phonenumber": "^2.10.0",
     "axios": "^0.18.0",
     "babel-plugin-react-css-modules": "^5.2.6",

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ExchangeTable from './components/ExchangeTable';
-import Map from './components/map/Map';
+// import Map from './components/map/Map';
+import DGisMap from './components/map/DGisMap';
 import YMap from './components/map/YMap';
 import axios from 'axios';
 import * as socketIOClient from 'socket.io-client';
@@ -39,6 +40,10 @@ class App extends React.Component<Props, State> {
 
   setSortBy (sortBy: string) {
     this.setState({ sortBy: sortBy }, this.sortRates);
+  }
+
+  resetSelectedPoint () {
+    this.setState({ selectedPointId: 0 });
   }
 
   getRates () {
@@ -102,7 +107,6 @@ class App extends React.Component<Props, State> {
             : 0
       );
     } else {
-      console.log('sorg by alphabet');
       rates.sort((first, second) =>
         first.date_update > second.date_update
           ? -1
@@ -140,14 +144,23 @@ class App extends React.Component<Props, State> {
           selectedPointId={this.state.selectedPointId}
         />
       );
-    } else {
+    }else if (this.state.map === '2gis'){
       map = (
-        <Map
+        <DGisMap
           rates={this.state.rates}
           selectedPointId={this.state.selectedPointId}
+          resetSelected={this.resetSelectedPoint.bind(this)}
         />
       );
-    }
+    } 
+    // else {
+    //   map = (
+    //     <Map
+    //       rates={this.state.rates}
+    //       selectedPointId={this.state.selectedPointId}
+    //     />
+    //   );
+    // }
     return (
       <div className="flex justify-between flex-wrap">
         <div className="w-full">
@@ -158,11 +171,17 @@ class App extends React.Component<Props, State> {
             >
               Yandex.Maps
             </button>
-            <button
+            {/* <button
               className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
               onClick={this.switchMap.bind(this, 'osm')}
             >
               OpenstreetMaps
+            </button> */}
+            <button
+              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+              onClick={this.switchMap.bind(this, '2gis')}
+            >
+              2gis
             </button>
           </div>
         </div>

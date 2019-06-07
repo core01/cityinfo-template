@@ -21,8 +21,8 @@ const PopupContent = (props: Props) => {
       </p>
     );
   }
-  const phones = (rate.phones as string[]).map(phone => {
-    return <p>{phone}</p>;
+  const phones = (rate.phones as string[]).map((phone,index) => {
+    return <p key={index}>{phone}</p>;
   });
 
   return (
