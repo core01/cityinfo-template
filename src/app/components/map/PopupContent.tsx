@@ -1,9 +1,10 @@
 import * as React from 'react';
 // @ts-ignore
 import styles from './PopupContent.module.css';
+import { currencies, currencyFlags } from '../../constants';
 
 interface Props {
-  rate: exchangeRate;
+  rate: ExchangeRate;
 }
 const PopupContent = (props: Props) => {
   const rate = props.rate;
@@ -14,6 +15,7 @@ const PopupContent = (props: Props) => {
         <a
           href={'/company-card.html?id=' + rate.company_id}
           target="_blank"
+          rel="noopener noreferrer"
           className={styles.Link}
         >
           Перейти в карточку фирмы
@@ -21,8 +23,25 @@ const PopupContent = (props: Props) => {
       </p>
     );
   }
-  const phones = (rate.phones as string[]).map((phone,index) => {
+  const phones = (rate.phones as string[]).map((phone, index) => {
     return <p key={index}>{phone}</p>;
+  });
+
+  const currencyRows = currencies.map(currency => {
+    let buyKey = 'buy' + currency;
+    let sellKey = 'sell' + currency;
+    if (rate[buyKey] || rate[sellKey]) {
+      return (
+        <tr key={currency}>
+          <td>
+            <img src={currencyFlags[currency]} alt={currency} />
+            {currency}
+          </td>
+          <td>{rate[buyKey]}</td>
+          <td>{rate[sellKey]}</td>
+        </tr>
+      );
+    }
   });
 
   return (
@@ -37,33 +56,7 @@ const PopupContent = (props: Props) => {
             <th>Продажа</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>USD</td>
-            <td>{rate.buyUSD}</td>
-            <td>{rate.sellUSD}</td>
-          </tr>
-          <tr>
-            <td>EUR</td>
-            <td>{rate.buyEUR}</td>
-            <td>{rate.sellEUR}</td>
-          </tr>
-          <tr>
-            <td>RUB</td>
-            <td>{rate.buyRUB}</td>
-            <td>{rate.sellRUB}</td>
-          </tr>
-          <tr>
-            <td>CNY</td>
-            <td>{rate.buyCNY}</td>
-            <td>{rate.sellCNY}</td>
-          </tr>
-          <tr>
-            <td>GBP</td>
-            <td>{rate.buyGBP}</td>
-            <td>{rate.sellGBP}</td>
-          </tr>
-        </tbody>
+        <tbody>{currencyRows}</tbody>
       </table>
       <div>
         <h4 className={styles.ContentTitle}>Адрес</h4>

@@ -4,15 +4,20 @@
     "es6": true,
     "node": true
   },
-  "extends": "standard",
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 2018
+    "jsx": true,
+    "useJSXTextNode": true
   },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "plugin:react/recommended"
+  ],
   "plugins": [
+    "@typescript-eslint",
+    "react",
     "react-hooks"
   ],
   "rules": {
@@ -30,9 +35,14 @@
         "functions": "ignore"
       }
     ],
+    "@typescript-eslint/explicit-member-accessibility": [
+      "error",
+      {
+        "accessibility": "no-public"
+      }
+    ],
+    "@typescript-eslint/explicit-function-return-type": "off",
     "react-hooks/rules-of-hooks": "error",
-    // Checks rules of Hooks
     "react-hooks/exhaustive-deps": "warn"
-    // Checks effect dependencies
   }
 }

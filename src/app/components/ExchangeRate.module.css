@@ -1,15 +1,22 @@
-.PhonesColumn {
-  width: 130px;
-  text-align: center;
+.Row {
+  cursor: pointer;
+}
+.Row:hover {
+  background-color: #c6f6d5;
 }
 
 .PointColumn {
-  width: 250px;
+  width: 40%;
+  text-align: center;
+}
+
+.PhonesColumn {
+  width: 30%;
   text-align: center;
 }
 
 .CurrencyCell {
-  width: 60px;
+  width: 15%;
 }
 
 .BestBuy {
@@ -29,5 +36,11 @@
 }
 
 .Info {
-  margin: .25rem auto;
+  margin: 0.25rem auto;
+}
+
+.Title {
+  color: rgba(0, 64, 201, 0.9);
+  font-weight: 500;
+  font-size: 0.9375rem;
 }

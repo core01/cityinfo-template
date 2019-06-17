@@ -2,12 +2,12 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './App';
 
-interface initialData {
+interface InitialData {
   retailCityId: number;
   wholesaleCityId: number;
 }
 
-let initialData: initialData = {
+let initialData: InitialData = {
   retailCityId: 4,
   wholesaleCityId: 5,
 };
@@ -17,7 +17,9 @@ if ((window as any).initialData !== undefined) {
 }
 // @ts-ignore
 ReactDOM.render(
-  <App retailCityId={initialData.retailCityId}
-       wholesaleCityId={initialData.wholesaleCityId}
-  />, document.getElementById('root'),
+  <App
+    retailCityId={initialData.retailCityId}
+    wholesaleCityId={initialData.wholesaleCityId}
+  />,
+  document.getElementById('root')
 );

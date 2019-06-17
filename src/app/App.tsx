@@ -1,7 +1,5 @@
 import * as React from 'react';
 import ExchangeTable from './components/ExchangeTable';
-// import Map from './components/map/Map';
-import DGisMap from './components/map/DGisMap';
 import YMap from './components/map/YMap';
 import axios from 'axios';
 import * as socketIOClient from 'socket.io-client';
@@ -16,12 +14,11 @@ interface Props {
 }
 
 interface State {
-  rates: exchangeRate[];
+  rates: ExchangeRate[];
   best: BestCourses;
   mode: string;
   sortBy: string;
   selectedPointId: number;
-  map: string;
 }
 
 class App extends React.Component<Props, State> {
@@ -31,22 +28,21 @@ class App extends React.Component<Props, State> {
     rates: [],
     best: {},
     selectedPointId: 0,
-    map: 'ymap',
   };
 
-  setMode (mode: string) {
-    this.setState({ mode: mode }, this.getRates);
+  setMode(mode: string) {
+    this.setState({ mode: mode, selectedPointId: 0 }, this.getRates);
   }
 
-  setSortBy (sortBy: string) {
+  setSortBy(sortBy: string) {
     this.setState({ sortBy: sortBy }, this.sortRates);
   }
 
-  resetSelectedPoint () {
+  resetSelectedPoint() {
     this.setState({ selectedPointId: 0 });
   }
 
-  getRates () {
+  getRates() {
     let cityId = this.props.retailCityId;
     if (this.state.mode === 'wholesale') {
       cityId = this.props.wholesaleCityId;
@@ -62,17 +58,20 @@ class App extends React.Component<Props, State> {
       });
   }
 
-  selectPoint (id: number) {
-    this.setState({ selectedPointId: id });
+  selectPoint(id: number) {
+    this.setState({ selectedPointId: id }, () => {
+      // Сбрасываем выбранную метку
+      this.setState({ selectedPointId: 0 });
+    });
   }
 
-  sortRates () {
+  sortRates() {
     const sortBy = this.state.sortBy;
 
-    let rates: exchangeRate[] = this.state.rates;
+    let rates: ExchangeRate[] = this.state.rates;
 
     if (sortBy.substr(0, 3) === 'sel') {
-      let zeroedRates: exchangeRate[] = [];
+      let zeroedRates: ExchangeRate[] = [];
       const filteredRates = rates.filter(rate => {
         if (rate[sortBy] === 0) {
           zeroedRates.push(rate);
@@ -103,89 +102,90 @@ class App extends React.Component<Props, State> {
         first[sortBy] < second[sortBy]
           ? 1
           : first[sortBy] > second[sortBy]
-            ? -1
-            : 0
+          ? -1
+          : 0
       );
     } else {
       rates.sort((first, second) =>
         first.date_update > second.date_update
           ? -1
           : first.date_update < second.date_update
-            ? 1
-            : 0
+          ? 1
+          : 0
       );
     }
 
     this.setState({ rates: rates });
   }
 
-  switchMap (map: string) {
-    this.setState({ map: map });
+  updateRate(newRate: ExchangeRateUpdate) {
+    let itemIndex;
+    this.state.rates.map((rate, index) => {
+      if (rate.id === newRate.id) {
+        itemIndex = index;
+      }
+    });
+    if (itemIndex !== undefined) {
+      let newRates = this.state.rates;
+      delete newRate.city_id;
+      newRates[itemIndex as number] = newRate;
+      this.updateBest(newRate);
+      this.setState({ rates: newRates }, this.sortRates);
+    } else {
+      let rates = this.state.rates;
+      rates.push(newRate);
+      this.setState({ rates }, this.sortRates);
+      this.updateBest(newRate);
+    }
   }
 
-  componentDidMount () {
-    this.getRates();
+  updateBest(rate: ExchangeRate) {
+    let best = Object.assign({}, this.state.best);
+    for (let property in this.state.best) {
+      if (property.substr(0, 3) === 'buy') {
+        if (rate[property] > best[property]) {
+          best[property] = rate[property] as number;
+        }
+      } else {
+        if (rate[property] < best[property]) {
+          best[property] = rate[property] as number;
+        }
+      }
+    }
+    this.setState({ best });
+  }
 
+  componentDidMount() {
+    this.getRates();
     const socket = socketIOClient(process.env.SOCKET_URL, {
       path: '/ws',
     });
-    socket.emit('join', 2);
-    socket.on('update', (data: any) => {
-      console.log('RECEIVED FROM SOCKET', data);
+    socket.emit('join', this.props.retailCityId);
+    socket.emit('join', this.props.wholesaleCityId);
+    socket.on('update', (data: ExchangeRateUpdate) => {
+      let needUpdate = false;
+      if (
+        data.city_id === this.props.retailCityId &&
+        this.state.mode === 'retail'
+      ) {
+        needUpdate = true;
+      } else if (
+        data.city_id === this.props.wholesaleCityId &&
+        this.state.mode === 'wholesale'
+      ) {
+        needUpdate = true;
+      }
+
+      if (needUpdate) {
+        this.updateRate(data);
+      }
     });
   }
 
-  render () {
-    let map = null;
-    if (this.state.map === 'ymap') {
-      map = (
-        <YMap
-          rates={this.state.rates}
-          selectedPointId={this.state.selectedPointId}
-        />
-      );
-    }else if (this.state.map === '2gis'){
-      map = (
-        <DGisMap
-          rates={this.state.rates}
-          selectedPointId={this.state.selectedPointId}
-          resetSelected={this.resetSelectedPoint.bind(this)}
-        />
-      );
-    } 
-    // else {
-    //   map = (
-    //     <Map
-    //       rates={this.state.rates}
-    //       selectedPointId={this.state.selectedPointId}
-    //     />
-    //   );
-    // }
+  render() {
     return (
       <div className="flex justify-between flex-wrap">
-        <div className="w-full">
-          <div className="text-center my-2 flex justify-around">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              onClick={this.switchMap.bind(this, 'ymap')}
-            >
-              Yandex.Maps
-            </button>
-            {/* <button
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-              onClick={this.switchMap.bind(this, 'osm')}
-            >
-              OpenstreetMaps
-            </button> */}
-            <button
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-              onClick={this.switchMap.bind(this, '2gis')}
-            >
-              2gis
-            </button>
-          </div>
-        </div>
-        <div className="w-full xl:w-1/2 h-screen overflow-hidden">
+        <div className="w-full lg:w-1/2 overflow-hidden">
           <ExchangeTable
             rates={this.state.rates}
             best={this.state.best}
@@ -195,8 +195,13 @@ class App extends React.Component<Props, State> {
             selectPoint={this.selectPoint.bind(this)}
           />
         </div>
-        <div className="w-full xl:w-1/2">
-          <div className="border border-gray-600">{map}</div>
+        <div className="w-full lg:w-1/2 mt-2 md:mt-0">
+          <YMap
+            rates={this.state.rates}
+            selectedPointId={this.state.selectedPointId}
+            resetSelectedPointId={this.resetSelectedPoint.bind(this)}
+            mode={this.state.mode}
+          />
         </div>
       </div>
     );

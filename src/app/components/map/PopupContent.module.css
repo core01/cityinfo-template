@@ -1,59 +1,70 @@
 .Table {
-    border: 1px solid rgba(0,0,0,0.12);
-    margin-bottom: 1rem;
-    background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  margin-bottom: 1rem;
+  background-color: #ffffff;
 }
 
 .Table th {
-    font-weight: 600;
-    color: #464646;
-    vertical-align: middle;
-    border-bottom: 1px solid rgba(0,0,0,0.12);
-    background-color: #ffffff;
-}
-
-.Table th, .Table td {
-    text-align: left;
-    padding: 0.25rem;
-}
-.Table tbody tr:nth-child(even){
-    background-color: #ffffff;
-}
-.Table tbody tr:nth-child(even){
-    background-color: #f5f5f5;
-}
-
-.Table tbody tr:hover{
-    background-color: #c3c2ff;
+  font-weight: 600;
+  color: #464646;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  background-color: #ffffff;
+  text-align: center;
 }
 
 .Table td {
-    text-align: center;
-    color: #464646;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.Table th,
+.Table td {
+  padding: 0.25rem;
+}
+.Table tbody tr:nth-child(even) {
+  background-color: #ffffff;
+}
+.Table tbody tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+.Table tbody tr:hover {
+  background-color: #c3c2ff;
+}
+
+.Table td {
+  text-align: center;
+  color: #464646;
+}
+
+.Table td img {
+  display: inline-block;
+  margin-right: 5px;
 }
 
 .Wrapper {
-    max-width: 200px;
+  max-width: 200px;
 }
 
 .Title {
-    font-size: 0.875rem;
-    font-weight: bold;
+  font-size: 0.875rem;
+  font-weight: bold;
 }
 
 .ContentTitle {
-    font-size: 0.75rem;
-    font-weight: bold;
+  font-size: 0.75rem;
+  font-weight: bold;
 }
 
 .Link {
-    display: block;
-    margin-top: 1rem;
-    color: #185e7a;
-    text-decoration: underline;
-    cursor: pointer;
+  display: block;
+  margin-top: 1rem;
+  color: #185e7a;
+  text-decoration: underline;
+  cursor: pointer;
 }
-.Link :hover{
-    color: #0d3d50;
-    text-decoration: none
+.Link :hover {
+  color: #0d3d50;
+  text-decoration: none;
 }
