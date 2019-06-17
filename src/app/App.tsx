@@ -159,6 +159,17 @@ class App extends React.Component<Props, State> {
     this.getRates();
     const socket = socketIOClient(process.env.SOCKET_URL, {
       path: '/ws',
+      transports: ['websocket'],
+    });
+    socket.on('disconnect', (reason: string) => {
+      if (reason === 'io server disconnect') {
+        // the disconnection was initiated by the server, you need to reconnect manually
+        socket.connect();
+      }
+      // else the socket will automatically try to reconnect
+    });
+    socket.on('error', (error: any) => {
+      console.log(error);
     });
     socket.emit('join', this.props.retailCityId);
     socket.emit('join', this.props.wholesaleCityId);
