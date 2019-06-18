@@ -95,7 +95,11 @@ const ExchangeTable = (props: Props) => {
   }
 
   const rows = notEmptyRates.map(rate => {
-    if (rate['buy' + currency] > 0 || rate['sell' + currency] > 0) {
+    if (
+      (rate['buy' + currency] > 0 || rate['sell' + currency] > 0) &&
+      rate.published &&
+      !rate.hidden
+    ) {
       return (
         <ExchangeRate
           rate={rate}

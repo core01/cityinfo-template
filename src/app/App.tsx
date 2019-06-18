@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ExchangeTable from './components/ExchangeTable';
 import YMap from './components/map/YMap';
+import Spinner from './components/SocketErrorSpinner';
 import axios from 'axios';
 import * as socketIOClient from 'socket.io-client';
 
@@ -19,6 +20,7 @@ interface State {
   mode: string;
   sortBy: string;
   selectedPointId: number;
+  socketError: boolean;
 }
 
 class App extends React.Component<Props, State> {
@@ -28,6 +30,7 @@ class App extends React.Component<Props, State> {
     rates: [],
     best: {},
     selectedPointId: 0,
+    socketError: false,
   };
 
   setMode(mode: string) {
@@ -155,24 +158,27 @@ class App extends React.Component<Props, State> {
     this.setState({ best });
   }
 
-  componentDidMount() {
-    this.getRates();
+  socketInit() {
     const socket = socketIOClient(process.env.SOCKET_URL, {
       path: '/ws',
-      transports: ['websocket'],
     });
-    socket.on('disconnect', (reason: string) => {
-      if (reason === 'io server disconnect') {
-        // the disconnection was initiated by the server, you need to reconnect manually
-        socket.connect();
+
+    socket.on('reconnect', () => {
+      this.setState({ socketError: false });
+      this.getRates();
+    });
+
+    socket.on('connect_error', () => {
+      if (!this.state.socketError) {
+        this.setState({ socketError: true });
       }
-      // else the socket will automatically try to reconnect
     });
-    socket.on('error', (error: any) => {
-      console.log(error);
+
+    socket.on('connect', () => {
+      socket.emit('join', this.props.retailCityId);
+      socket.emit('join', this.props.wholesaleCityId);
     });
-    socket.emit('join', this.props.retailCityId);
-    socket.emit('join', this.props.wholesaleCityId);
+
     socket.on('update', (data: ExchangeRateUpdate) => {
       let needUpdate = false;
       if (
@@ -193,10 +199,20 @@ class App extends React.Component<Props, State> {
     });
   }
 
+  componentDidMount() {
+    this.getRates();
+    this.socketInit();
+  }
+
   render() {
     return (
       <div className="flex justify-between flex-wrap">
-        <div className="w-full lg:w-1/2 overflow-hidden">
+        <div className="w-full lg:w-1/2 min-h-screen lg:h-full overflow-hidden relative">
+          <Spinner
+            show={this.state.socketError}
+            type="red"
+            message="Потеряно соединение, восстанавливаем..."
+          />
           <ExchangeTable
             rates={this.state.rates}
             best={this.state.best}

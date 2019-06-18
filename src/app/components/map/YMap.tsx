@@ -131,7 +131,7 @@ class YMap extends React.Component<Props, State> {
         <Map
           state={mapState}
           width="100%"
-          height="99vh"
+          height="89vh"
           onLoad={(ymaps: any) => this.setYmaps(ymaps)}
           instanceRef={(ref: any) => ref && this.setCenter(ref)}
         >
