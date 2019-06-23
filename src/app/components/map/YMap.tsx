@@ -10,23 +10,13 @@ interface Props {
   selectedPointId: number;
   resetSelectedPointId: Function;
   mode: string;
+  mapCenter: number[];
 }
 interface State {
   ymaps: any;
   bounds: number[][];
   loading: boolean;
 }
-
-interface MapState {
-  center: number[];
-  zoom: number;
-  behaviors: string[];
-}
-let mapState: MapState = {
-  center: [49.95, 82.61],
-  zoom: 14,
-  behaviors: ['default', 'scrollZoom'],
-};
 
 class YMap extends React.Component<Props, State> {
   activePlacemarkPreset = 'islands#nightCircleDotIcon';
@@ -122,28 +112,34 @@ class YMap extends React.Component<Props, State> {
     });
 
     return (
-      <YMaps
-        query={{
-          load:
-            'Map,Placemark,control.ZoomControl,util.bounds,geoObject.addon.balloon',
-        }}
-      >
-        <Map
-          state={mapState}
-          width="100%"
-          height="89vh"
-          onLoad={(ymaps: any) => this.setYmaps(ymaps)}
-          instanceRef={(ref: any) => ref && this.setCenter(ref)}
-        >
-          <ZoomControl
-            options={{
-              size: 'small',
-            }}
-          />
-          {placeMarks}
-        </Map>
+      <React.Fragment>
         <Spinner show={this.state.loading} />
-      </YMaps>
+        <YMaps
+          query={{
+            load:
+              'Map,Placemark,control.ZoomControl,util.bounds,geoObject.addon.balloon',
+          }}
+        >
+          <Map
+            state={{
+              center: this.props.mapCenter,
+              zoom: 14,
+              behaviors: ['default', 'scrollZoom'],
+            }}
+            width="100%"
+            height="89vh"
+            onLoad={(ymaps: any) => this.setYmaps(ymaps)}
+            instanceRef={(ref: any) => ref && this.setCenter(ref)}
+          >
+            <ZoomControl
+              options={{
+                size: 'small',
+              }}
+            />
+            {placeMarks}
+          </Map>
+        </YMaps>
+      </React.Fragment>
     );
   }
 }

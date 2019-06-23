@@ -8,7 +8,7 @@ const Spinner = (props: Props) => {
   if (props.show) {
     spinner = (
       <div className="spinner-container">
-        <div className="spinner">
+        <div className="spinner spinner--pelorous">
           <div className="rect1" />
           <div className="rect2" />
           <div className="rect3" />

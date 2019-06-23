@@ -11,7 +11,8 @@ interface BestCourses {
 
 interface Props {
   retailCityId: number;
-  wholesaleCityId: number;
+  wholesaleCityId: number | null;
+  mapCenter: number[];
 }
 
 interface State {
@@ -33,7 +34,11 @@ class App extends React.Component<Props, State> {
     socketError: false,
   };
 
-  setMode(mode: string) {
+  setMode(mode: string | null) {
+    if (mode === 'wholesale' && this.props.wholesaleCityId === null) {
+      // @todo check this behaviour
+      return;
+    }
     this.setState({ mode: mode, selectedPointId: 0 }, this.getRates);
   }
 
@@ -207,7 +212,7 @@ class App extends React.Component<Props, State> {
   render() {
     return (
       <div className="flex justify-between flex-wrap">
-        <div className="w-full lg:w-1/2 min-h-screen lg:h-full overflow-hidden relative">
+        <div className="w-full lg:w-1/2 lg:h-full overflow-hidden relative mb-2 sm:mb-3 lg:mb-0">
           <Spinner
             show={this.state.socketError}
             type="red"
@@ -228,6 +233,7 @@ class App extends React.Component<Props, State> {
             selectedPointId={this.state.selectedPointId}
             resetSelectedPointId={this.resetSelectedPoint.bind(this)}
             mode={this.state.mode}
+            mapCenter={this.props.mapCenter}
           />
         </div>
       </div>

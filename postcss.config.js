@@ -1,14 +1,12 @@
 const tailwind = require('tailwindcss')('./tailwind.config.js');
 const purgeCSS = require('@fullhuman/postcss-purgecss')({
-  content: [
-    './src/template/**/*.njk',
-  ],
-  whitelist: ['html', 'body'],
+  content: ['./src/template/**/*.njk'],
+  whitelist: ['html', 'body', 'h1', 'h2', 'h3', 'h4', 'h5'],
   whitelistPatternsChildren: [],
   extractors: [
     {
       extractor: class TailwindExtractor {
-        static extract (content) {
+        static extract(content) {
           return content.match(/[A-Za-z0-9-_:/]+/g) || [];
         }
       },

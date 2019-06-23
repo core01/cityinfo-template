@@ -1,0 +1,43 @@
+{% extends "layout/base.njk" %}
+{% block styles %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css">
+{% endblock %}
+{% block content %}
+<div class="flex flex-wrap lg:inline-flex p-4 mx-auto">
+  <button class="m-1 lg:m-0 py-2 px-4 bg-pelorous-600 text-white hover:bg-pelorous-500">
+    Регистрация обменных пунктов
+  </button>
+  <a href="/exchange-astana.html" class="m-1 lg:m-0 hover:bg-gray-200 hover:border-gray-600 py-2 px-4 border border-gray-500">
+    Нур-Султан
+  </a>
+  <a href="/exchange-almaty.html" class="m-1 lg:m-0 py-2 px-4 bg-pelorous-500 text-gray-200">
+    Алматы
+  </a>
+  <a href="#" class="m-1 lg:m-0 hover:bg-gray-200 hover:border-gray-600 py-2 px-4 border border-gray-500">
+    Павлодар
+  </a>
+  <a href="/exchange.html" class="m-1 lg:m-0 hover:bg-gray-200 hover:border-gray-600 py-2 px-4 border border-gray-500">
+    Усть-Каменогорск
+  </a>
+  <a href="/exchange-ridder.html" class="m-1 lg:m-0 hover:bg-gray-200 hover:border-gray-600 py-2 px-4 border border-gray-500">
+    Риддер
+  </a>
+  <button class="m-1 lg:m-0 hover:bg-gray-200 hover:border-gray-600 py-2 px-4 border border-gray-500">
+    Другие города
+  </button>
+</div>
+  <div class="flex flex-col mx-auto py-4 w-full lg:w-5/6">
+    <div id="root"></div>
+  </div>
+  {% include "includes/banners_right.njk" %}
+{% endblock %}
+{% block scripts %}
+  <script>
+    window.initialData = {
+      retailCityId: 2,
+      wholesaleCityId: 7,
+      mapCenter: [43.221313, 76.955436],
+    };
+  </script>
+  <script src="/js/app.js"></script>
+{% endblock %}
