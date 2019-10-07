@@ -6,10 +6,12 @@
     "removeComments": true,
     "moduleResolution": "node",
     "jsx": "react",
-    "lib": [
-      "es5",
-      "es6",
-      "dom"
-    ]
-  }
+    "lib": ["es5", "es6", "dom"],
+    "baseUrl": "./src",
+    "paths": {
+      "@app/*": ["app/*"]
+    },
+    "sourceMap": true
+  },
+  "plugins": [{ "name": "typescript-plugin-css-modules" }]
 }

@@ -1,0 +1,26 @@
+.BestBuy {
+  font-weight: bold;
+  color: maroon;
+}
+
+.BestSell {
+  color: #0c14b2;
+  font-weight: bold;
+}
+
+.Date {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.Info {
+  margin: 0.25rem auto;
+  text-align: center;
+}
+
+.Title {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  text-align: center;
+}

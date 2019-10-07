@@ -5,6 +5,7 @@ interface Props {
   type?: string;
   message?: string;
 }
+// TODO rewrite with Spinner.tsx usage
 const Spinner = (props: Props) => {
   let spinner = null;
   if (props.show) {

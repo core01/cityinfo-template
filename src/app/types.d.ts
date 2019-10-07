@@ -19,9 +19,21 @@ declare interface ExchangeRate {
   longitude: number;
   latitude: number;
 
-  [key: string]: string | number | string[];
+  [key: string]: any;
 }
 
 declare interface ExchangeRateUpdate extends ExchangeRate {
   city_id: number;
+}
+
+declare interface BestRates {
+  [key: string]: number;
+}
+
+declare module '*.module.css' {
+  interface IClassNames {
+    [className: string]: string;
+  }
+  const classNames: IClassNames;
+  export = classNames;
 }

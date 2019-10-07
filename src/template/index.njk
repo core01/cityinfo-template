@@ -1,112 +1,104 @@
 {% extends "layout/base.njk" %}
 {% block content %}
-    <div class="w-full p-4  sm:w-1/2">
-        <div class="my-slider">
-            <div class="relative">
-                <a href="#">
-                    <img alt="" class="object-contain"
-                         src="https://contrattiinternazionalidimarcobianchi.it/wp-content/uploads/2015/04/portfolio-image-1.jpg"/>
-                    <div class="slide-text absolute text-white">
-                        <h3 class="text-lg font-bold">Какой-то заголовок</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="relative">
-                <a href="#">
-                    <img alt="" class="object-contain"
-                         src="https://avatars.mds.yandex.net/get-pdb/911433/25718402-8060-4f3f-bb6e-6f00879318e7/s1200?webp=false"/>
-                    <div class="slide-text absolute text-white">
-                        <h3 class="text-lg font-bold">Совершенно другой заголовок</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="relative">
-                <a href="#">
-                    <img alt="" class="object-contain"
-                         src="http://27.al/wp-content/uploads/2016/10/lodhh.jpg"/>
-                    <div class="slide-text absolute text-white">
-                        <h3 class="text-lg font-bold">Совершенно уникальный другой заголовок</h3>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="w-full flex flex-col p-4  sm:w-1/2">
-        <a class="block bg-black w-full p-12 text-white text-center text-3xl main-courses" href="#">
-            <span class="p-2">Курсы валют</span>
+  <div class="w-full p-4  sm:w-1/2">
+    <div class="my-slider">
+      <div class="relative">
+        <a>
+          <img alt="" class="object-contain" src="https://contrattiinternazionalidimarcobianchi.it/wp-content/uploads/2015/04/portfolio-image-1.jpg"/>
+          <div class="slide-text absolute text-white">
+            <h3 class="text-xl">
+              <span>
+                Информационный Центр 13-55 и 8-777-646-13-55
+              </span>
+            </h3>
+          </div>
         </a>
-        <a class="block bg-red w-full p-12 text-white text-center mt-6 text-3xl main-atameken" href="#">
-            <span>Новости «Атамекен»</span>
+      </div>
+      <div class="relative">
+        <a>
+          <img alt="" class="object-contain" src="https://avatars.mds.yandex.net/get-pdb/911433/25718402-8060-4f3f-bb6e-6f00879318e7/s1200?webp=false"/>
+          <div class="slide-text absolute text-white">
+            <h3 class="text-xl">
+              <span>Звоните спрашивайте!</span>
+            </h3>
+          </div>
         </a>
+      </div>
     </div>
-    <div class="w-full flex flex-wrap px-2 mt-2 mb-4">
-        <div class="w-1/2 sm:w-1/3 md:w-1/6">
-            <a class="plate plate--site border-r border-gray-500" href="#">
-                <div class="plate__icon text-pelorous-500">
-                    <i class="fas fa-map-marked-alt"></i>
-                </div>
-                <h4 class="plate__title">Карта</h4>
-                <p class="plate__annotation">
-                    Изготовление, печать
-                </p>
-            </a>
+  </div>
+  <div class="w-full flex flex-col p-4  sm:w-1/2">
+    <a class="block bg-black w-full p-12 text-white text-center text-3xl main-courses" href="/exchange.html">
+      <span class="p-2">Курсы валют</span>
+    </a>
+    <a class="block bg-red w-full p-12 text-white text-center mt-6 text-3xl main-atameken" href="#">
+      <span>Новости «Атамекен»</span>
+    </a>
+  </div>
+  <div class="w-full flex flex-wrap px-2 mt-2 mb-4">
+    <div class="w-1/2 sm:w-1/3 md:w-1/6">
+      <a class="plate plate--site border-r border-gray-500" href="#">
+        <div class="plate__icon text-pelorous-500">
+          <i class="fas fa-map-marked-alt"></i>
         </div>
-
-        <div class="w-1/2 sm:w-1/3 md:w-1/6">
-            <a class="plate plate--site border-r border-gray-500" href="#">
-                <div class="plate__icon text-pelorous-500">
-                    <i class="fas fa-gas-pump"></i>
-                </div>
-                <h4 class="plate__title">Бензин</h4>
-                <p class="plate__annotation">Цены на ГСМ</p>
-            </a>
-        </div>
-
-
-        <div class="w-1/2 sm:w-1/3 md:w-1/6">
-            <a class="plate plate--site border-r border-gray-500" href="#">
-                <div class="plate__icon text-pelorous-500">
-                    <i class="fas fa-bus-alt"></i>
-                </div>
-                <h4 class="plate__title">Расписание транспорта</h4>
-                <p class="plate__annotation">Аэропорт, вокзалы</p>
-            </a>
-        </div>
-
-
-        <div class="w-1/2 sm:w-1/3 md:w-1/6">
-            <a class="plate plate--site border-r border-gray-500" href="#">
-                <div class="plate__icon text-pelorous-500">
-                    <i class="far fa-money-bill-alt"></i>
-                </div>
-                <h4 class="plate__title">Банкоматы</h4>
-                <p class="plate__annotation">Отображение на карте</p>
-            </a>
-        </div>
-
-        <div class="w-1/2 sm:w-1/3 md:w-1/6">
-            <a class="plate plate--site border-r border-gray-500" href="#">
-                <div class="plate__icon text-pelorous-500">
-                    <i class="far fa-calendar-alt"></i>
-                </div>
-                <h4 class="plate__title">Афиша</h4>
-                <p class="plate__annotation">Театры и кинотеатры</p>
-            </a>
-        </div>
-
-
-        <div class="w-1/2 sm:w-1/3 md:w-1/6">
-            <a class="plate plate--site" href="#">
-                <div class="plate__icon text-pelorous-500">
-                    <i class="fas fa-phone-square"></i>
-                </div>
-                <h4 class="plate__title">Телефонные коды</h4>
-                <p class="plate__annotation">Городов Казахстана</p>
-            </a>
-        </div>
-
+        <h4 class="plate__title">Карта</h4>
+        <p class="plate__annotation">
+          Изготовление, печать
+        </p>
+      </a>
     </div>
-    {% set categories = [
+
+    <div class="w-1/2 sm:w-1/3 md:w-1/6">
+      <a class="plate plate--site border-r border-gray-500" href="#">
+        <div class="plate__icon text-pelorous-500">
+          <i class="fas fa-gas-pump"></i>
+        </div>
+        <h4 class="plate__title">Бензин</h4>
+        <p class="plate__annotation">Цены на ГСМ</p>
+      </a>
+    </div>
+
+    <div class="w-1/2 sm:w-1/3 md:w-1/6">
+      <a class="plate plate--site border-r border-gray-500" href="#">
+        <div class="plate__icon text-pelorous-500">
+          <i class="fas fa-bus-alt"></i>
+        </div>
+        <h4 class="plate__title">Расписание транспорта</h4>
+        <p class="plate__annotation">Аэропорт, вокзалы</p>
+      </a>
+    </div>
+
+    <div class="w-1/2 sm:w-1/3 md:w-1/6">
+      <a class="plate plate--site border-r border-gray-500" href="#">
+        <div class="plate__icon text-pelorous-500">
+          <i class="far fa-money-bill-alt"></i>
+        </div>
+        <h4 class="plate__title">Банкоматы</h4>
+        <p class="plate__annotation">Отображение на карте</p>
+      </a>
+    </div>
+
+    <div class="w-1/2 sm:w-1/3 md:w-1/6">
+      <a class="plate plate--site border-r border-gray-500" href="#">
+        <div class="plate__icon text-pelorous-500">
+          <i class="far fa-calendar-alt"></i>
+        </div>
+        <h4 class="plate__title">Афиша</h4>
+        <p class="plate__annotation">Театры и кинотеатры</p>
+      </a>
+    </div>
+
+    <div class="w-1/2 sm:w-1/3 md:w-1/6">
+      <a class="plate plate--site" href="#">
+        <div class="plate__icon text-pelorous-500">
+          <i class="fas fa-phone-square"></i>
+        </div>
+        <h4 class="plate__title">Телефонные коды</h4>
+        <p class="plate__annotation">Городов Казахстана</p>
+      </a>
+    </div>
+
+  </div>
+  {% set categories = [
         {title: "Медицина", icon: "fas fa-heartbeat" },
         {title: "Услуги", icon: "fab fa-aws" },
         {title: "Рестораны и кафе", icon: "fas fa-wine-glass-alt" },
@@ -115,36 +107,35 @@
         {title: "Ещё", icon: "fas fa-ellipsis-h" }
     ] %}
 
-    <div class="flex flex-wrap w-full px-2">
-        {% for category in categories %}
-            <div class="w-1/2 sm:w-1/3 md:w-1/6">
-                <a class="plate plate--search plate--main-page" href="/search.html">
-                    <div class="plate__icon">
-                        <i class="{{ category.icon }}"></i>
-                    </div>
-                    <h4 class="plate__title">{{ category.title }}</h4>
-                </a>
-            </div>
-        {% endfor %}
-    </div>
+  <div class="flex flex-wrap w-full px-2">
+    {% for category in categories %}
+      <div class="w-1/2 sm:w-1/3 md:w-1/6">
+        <a class="plate plate--search plate--main-page" href="/search.html">
+          <div class="plate__icon">
+            <i class="{{ category.icon }}"></i>
+          </div>
+          <h4 class="plate__title">{{ category.title }}</h4>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
 
 {% endblock %}
 {% block scripts %}
-    <script crossorigin="anonymous" integrity="sha256-pau+EjagELvmW7XoDOgz4DCKHep0GuC+kw6U8GQKo94="
-            src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.1/min/tiny-slider.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        tns({
-          container: '.my-slider',
-          slideBy: 'page',
-          autoplay: true,
-          mouseDrag: true,
-          swipeAngle: false,
-          controls: false,
-          nav: false,
-          autoplayButtonOutput: false,
-          autoplayTimeout: 10000
-        })
+  <script crossorigin="anonymous" integrity="sha256-pau+EjagELvmW7XoDOgz4DCKHep0GuC+kw6U8GQKo94=" src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.1/min/tiny-slider.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      tns({
+        container: '.my-slider',
+        slideBy: 'page',
+        autoplay: true,
+        mouseDrag: true,
+        swipeAngle: false,
+        controls: false,
+        nav: false,
+        autoplayButtonOutput: false,
+        autoplayTimeout: 10000
       })
-    </script>
+    })
+  </script>
 {% endblock %}

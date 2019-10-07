@@ -21,9 +21,7 @@ const nested = require('postcss-nested');
 const atImport = require('postcss-import');
 const each = require('postcss-each');
 const simpleVars = require('postcss-simple-vars');
-const autoprefixer = require('autoprefixer')({
-  browsers: ['last 2 versions', 'iOS >= 8'],
-});
+const autoprefixer = require('autoprefixer')({});
 const cssnano = require('cssnano')({
   preset: [
     'default',
@@ -35,7 +33,7 @@ const cssnano = require('cssnano')({
   ],
 });
 
-const plugins = [tailwind, nested, atImport, each, simpleVars];
+const plugins = [atImport, tailwind, nested, each, simpleVars];
 
 module.exports = ({ options }) => {
   if (options.mode === 'production') {

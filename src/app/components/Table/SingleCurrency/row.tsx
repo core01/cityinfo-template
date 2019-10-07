@@ -1,8 +1,7 @@
 import * as React from 'react';
 import * as dayjs from 'dayjs';
 import PhoneNumber from 'awesome-phonenumber';
-// @ts-ignore
-import styles from './ExchangeRate.module.css';
+import * as styles from './row.module.css';
 
 interface Props {
   rate: ExchangeRate;
@@ -13,7 +12,7 @@ interface Props {
   selectPoint: Function;
 }
 
-const ExchangeRate = (props: Props) => {
+const Row = (props: Props) => {
   let buyValue =
     props.rate['buy' + props.currency] === 0
       ? '-'
@@ -79,4 +78,4 @@ const ExchangeRate = (props: Props) => {
   );
 };
 
-export default ExchangeRate;
+export default Row;

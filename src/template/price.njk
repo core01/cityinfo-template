@@ -1,0 +1,496 @@
+{% extends "layout/base.njk" %}
+{% block styles %}
+  <style>
+    .price-table {
+      max-width: 800px;
+    }
+    .price-image {
+      max-width: 800px;
+    }
+  </style>
+{% endblock %}
+{% block content %}
+  <div class="flex w-full mx-auto">
+    <div class="w-1/2">
+      <img style="position: absolute;" title="Логотим для документов" src="https://www.cityinfo.kz/assets/images/logo_/Logo_for_doc_2014.png" alt="Логотим для документов" width="161" height="70"/>
+    </div>
+    <div class="w-1/2">
+      <p class="text-right">Наши контакты:<br/>
+        8 (7232) 25-26-54, 24-40-55, т/ф 25-95-18<br/>
+        ТОО «Cityinfo. kz»<br/>
+        070004, Казахстан, г. Усть-Каменогорск, пр.Ауэзова,14/1 офис 306</p>
+    </div>
+  </div>
+  <div class="mx-auto my-2">
+    <h4 class="text-center text-blue-500 text-xl">
+      ПРАЙС-ЛИСТ действителен с 01 мая 2017 г.
+    </h4>
+  </div>
+
+  <div>
+    <p class="mb-2 text-center">Специальные телефонные линии
+      <b>13-55</b>
+      Cityinfo работают с 9.00 до 18.00 часов в будние и праздничные дни
+      <b>без перерывов, в
+      </b>
+      <b>субботу</b>
+      с 9.00 до 16.00 , воскресенье выходной.</p>
+    <p class="mb-2 text-center">За 20 лет работы на рынке услуг наработана большая база данных справочной.<br/>
+      Профессиональные, опытные операторы справочной Cityinfo хорошо ориентируются в обилии информации нашей базы данных. Справочная ежедневно обрабатывает более 3 000 звонков.<br/>
+      Позвонив по номеру<b>
+        13-55
+      </b>или<b>
+        8-777-646-13-55 (сот.)</b>, Вы получите справку по товарам и услугам ( гос. учреждения, предприятие, банки, магазины и многое другое).<b>
+        Звонки по телефону 13-55 бесплатные.</b>
+    </p>
+    <p class="mb-2 text-center">
+      <em>
+        <b>НЕ УПУСТИ СВОЙ ШАНС, ВОСПОЛЬЗУЙСЯ НАШИМИ ИНСТРУМЕНТАМИ</b>
+      </em>
+      <em style="font-size: large; line-height: 1.5em;">
+        <b>
+          ДЛЯ БЕСПЛАТНОЙ ПУБЛИКАЦИИ ПРАЙС-ЛИСТОВ НА НАШЕМ САЙТЕ!(БОНУС)</b>
+      </em>
+    </p>
+
+    <p>
+      <em style="line-height: 1.5em;">
+        <b>Мы рады сотрудничеству с Вами!</b>
+      </em>
+    </p>
+    <p>
+      <b>
+        <em>Звоните, спрашивайте...</em>
+      </b>
+    </p>
+    <p class="text-center">
+      <em>Цены указаны без учета НДС.</em>
+    </p>
+
+    <div class="overflow-x mb-4">
+      <table class="mx-auto price-table">
+        <thead>
+          <tr class="bg-blue-600 text-white">
+            <td class="p-2 text-center font-bold">
+              Тарифы
+            </td>
+            <td class="p-2 text-center font-bold">
+              Информация в базе данных
+            </td>
+            <td class="p-2 text-center font-bold">
+              Стоимость (т-ге)
+            </td>
+          </tr>
+        </thead>
+        <tbody class="text-black">
+          <tr>
+            <td class="text-center align-middle font-bold p-2">
+              Single
+            </td>
+            <td class="p-2">
+              <ul class="list-none">
+                <li>
+                  - Наименование предприятия, телефон, факс;
+                </li>
+                <li>
+                  - адрес предприятия, режим работы,ориентир;
+                </li>
+                <li>
+                  - www, e-mail, ICQ, Skype.
+                </li>
+                <li>
+                  - позиции до 20 видов;
+                </li>
+                <li>
+                  - подпозиция до 20 видов;
+                </li>
+              </ul>
+
+
+            </td>
+            <td class="text-center font-bold p-2">
+              6 000
+              <br>(месяц)
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center align-middle font-bold p-2">
+              Service
+
+            </td>
+            <td class="p-2">
+              <ul class="list-none">
+                <li>
+                  - Наименование предприятия, телефон, факс (не более 3 номеров);
+                </li>
+                <li>
+                  - адрес предприятия (не более 1);
+                </li>
+                <li>
+                  - режим работы, ориентир;
+                </li>
+                <li>
+                  - www, e-mail, ICQ, Skype.
+                </li>
+                <li>
+                  - оперативная информация ( курсы валют с ежедневным  обновлением    котировок в он-лайн режиме+ рассылка по эл. почте);
+                </li>
+              </ul>
+            </td>
+            <td class="text-center font-bold p-2">
+              6 000
+              <br>(месяц)
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <div class="overflow-x mb-2">
+      <table class="mx-auto price-table">
+        <thead>
+          <tr class="bg-blue-600 text-white">
+            <td class="p-2 text-center font-bold">
+              Дополнительная услуга
+            </td>
+            <td class="p-2 text-center font-bold">
+              Стоимость (т-ге)
+            </td>
+          </tr>
+        </thead>
+        <tbody class="text-black">
+          <tr>
+            <td class="text-center align-middle font-bold p-2">
+              *Приоритетное место в базе данных (С РОТАЦИЕЙ):
+              <ul class="list-none">
+                <li>
+                  - 1 группа;
+                </li>
+                <li>
+                  - 2 и 3 группа.
+                </li>
+              </ul>
+              (в каждой группе по 2 места, фирмы в каждой группе между собой ротируются)
+            </td>
+
+            <td class="text-center font-bold p-2">
+              1 группа - 1200 (месяц)
+              <br>2 и 3 группа - 800
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h5 class="text-lg text-blue-500 underline mb-2">Скидки за предоплату:</h5>
+    <p class="font-bold text-lg mb-2">при размещении по тарифу «Single» на 3 мес.
+                -5%, на 6 мес. -10%, на 12 мес.-15%
+    </p>
+    <p class="font-bold text-lg mb-2">
+      при размещении по тарифу «Service» скидки не предусмотрены.
+    </p>
+
+    <p class="font-bold mb-2">
+      <span class="underline">Бонус</span>: Вся информация размещается на сайте www.cityinfo.kz , в справочнике «Товары и услуги г. Усть-Каменогорска» на момент сбора информации, а также размещение информации о ваших акциях и скидках на телефонных линиях и сайте.</p>
+    Примечание:
+    <ul>
+      <li class="ml-4">Скидки рассчитываются от общей суммы контракта, за приоритетное место и в случае взаимозачета скидки не предусмотрены;</li>
+      <li class="ml-4">Предоплата за услуги 100%;</li>
+      <li class="ml-4">Срок размещения информации мин. 3 месяца;</li>
+      <li class="ml-4">Рассылка по электронной почте производится в рабочие дни;</li>
+    </ul>
+    <p class="text-center font-bold my-4">По всем вопросам звоните: 8 (7232) 25-26-54, 25-95-18</p>
+    <p class="text-center font-bold my-4">Вы можете вызвать менеджера в Ваш офис в любое удобное время. Посетить наш офис в рабочие дни с 9:00 до 17:00 часов. Связаться с нами по электронной почте info@cityinfo.kz Наш сайт: www.cityinfo.kz, www.1355.kz</p>
+
+
+    <h4 class="text-center font-bold text-blue-500 my-2">ПРАЙС-ЛИСТ действителен с 20 октября 2016 г.</h4>
+    <h5 class="text-center text-blue-500 my-2">Баннерная реклама на сайте www.cityinfo.kz, www.1355.kz</h5>
+
+    <img class="block mx-auto price-image my-2" src="https://www.cityinfo.kz/assets/images/print/maket_banner_for_site8.jpg"/>
+
+    <div class="overflow-x mb-2">
+      <table class="price-table" style="width: 100%; margin-left: auto; margin-right: auto;" border="1" cellspacing="0" cellpadding="4">
+        <colgroup>
+          <col width="17*"/>
+          <col width="78*"/>
+          <col width="37*"/>
+          <col width="37*"/>
+          <col width="47*"/>
+          <col width="39*"/>
+        </colgroup>
+        <tbody>
+          <tr valign="TOP">
+            <td bgcolor="#eeeeee" width="7%">
+              <p lang="ru-RU" align="CENTER">№</p>
+            </td>
+            <td bgcolor="#eeeeee" width="31%">
+              <p align="CENTER">
+                <b>Размер</b>
+              </p>
+            </td>
+            <td bgcolor="#eeeeee" width="15%">
+              <p align="CENTER">
+                <b>Ротация</b>
+              </p>
+            </td>
+            <td bgcolor="#eeeeee" width="14%">
+              <p align="CENTER">
+                <b>Страницы</b>
+              </p>
+            </td>
+            <td bgcolor="#eeeeee" width="18%">
+              <p align="CENTER">
+                <b>Период</b>
+              </p>
+            </td>
+            <td bgcolor="#eeeeee" width="15%">
+              <p align="CENTER">
+                <b>Цена</b>
+              </p>
+            </td>
+          </tr>
+          <tr valign="TOP">
+            <td width="7%">
+              <p align="LEFT">1,2(Рис.1)</p>
+            </td>
+            <td width="31%">
+              <p align="CENTER">468х60 пикселей</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">1/4 шт.</p>
+            </td>
+            <td width="14%">
+              <p align="CENTER">все</p>
+            </td>
+            <td width="18%">
+              <p align="CENTER">1 месяц</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">18 000 тг.</p>
+            </td>
+          </tr>
+          <tr valign="TOP">
+            <td width="7%">
+              <p align="CENTER">3</p>
+            </td>
+            <td width="31%">
+              <p align="CENTER">180х200 пикселей</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">
+                <span>1/3 шт.</span>
+              </p>
+            </td>
+            <td width="14%">
+              <p align="CENTER">
+                <span>все</span>
+              </p>
+            </td>
+            <td width="18%">
+              <p align="CENTER">1 месяц</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">16 000 тг.</p>
+            </td>
+          </tr>
+          <tr valign="TOP">
+            <td width="7%">
+              <p align="CENTER">4</p>
+            </td>
+            <td width="31%">
+              <p align="CENTER">180х270 пикселей</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">нет</p>
+            </td>
+            <td width="14%">
+              <p align="CENTER">все</p>
+            </td>
+            <td width="18%">
+              <p align="CENTER">1 месяц</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">35 200 тг.</p>
+            </td>
+          </tr>
+          <tr valign="TOP">
+            <td width="7%">
+              <p align="CENTER">5,6,7</p>
+            </td>
+            <td width="31%">
+              <p align="CENTER">180х270 пикселей</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">1/4 шт.</p>
+            </td>
+            <td width="14%">
+              <p align="CENTER">все</p>
+            </td>
+            <td width="18%">
+              <p align="CENTER">1 месяц</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">15 200 тг.</p>
+            </td>
+          </tr>
+          <tr valign="TOP">
+            <td width="7%">
+              <p align="CENTER">8,9</p>
+            </td>
+            <td width="31%">
+              <p align="CENTER">180х270 пикселей</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">1/4 шт.</p>
+            </td>
+            <td width="14%">
+              <p align="CENTER">все</p>
+            </td>
+            <td width="18%">
+              <p align="CENTER">1 месяц</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">18 000 тг.</p>
+            </td>
+          </tr>
+          <tr valign="TOP">
+            <td width="7%">
+              <p align="CENTER">10</p>
+            </td>
+            <td width="31%">
+              <p align="CENTER">180х270пикселей</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">
+                <span>нет</span>
+              </p>
+            </td>
+            <td width="14%">
+              <p align="CENTER">все</p>
+            </td>
+            <td width="18%">
+              <p align="CENTER">1 месяц</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">35 200 тг.</p>
+            </td>
+          </tr>
+          <tr valign="TOP">
+            <td width="7%">
+              <p align="CENTER">11,12,13</p>
+            </td>
+            <td width="31%">
+              <p align="CENTER">180х270 пикселей</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">
+                <span>1/4 шт.</span>
+              </p>
+            </td>
+            <td width="14%">
+              <p align="CENTER">все</p>
+            </td>
+            <td width="18%">
+              <p align="CENTER">1 месяц</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">15 200 тг.</p>
+            </td>
+          </tr>
+          <tr valign="TOP">
+            <td width="7%">
+              <p align="CENTER">14</p>
+            </td>
+            <td width="31%">
+              <p align="CENTER">1222x250
+                <span style="text-align: -webkit-center;">пикселей</span>
+              </p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">
+                <span style="text-align: -webkit-center;">нет</span>
+              </p>
+            </td>
+            <td width="14%">
+              <p align="CENTER">главная</p>
+            </td>
+            <td width="18%">
+              <p align="CENTER">
+                <span style="text-align: -webkit-center;">1 месяц</span>
+              </p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">
+                <span style="white-space: nowrap; text-align: -webkit-center;">36 000
+                </span>
+                <span style="white-space: nowrap; text-align: -webkit-center;">тг.</span>
+              </p>
+            </td>
+          </tr>
+          <tr valign="TOP">
+            <td width="7%">
+              <p align="CENTER">15</p>
+            </td>
+            <td width="31%">
+              <p align="CENTER">700х70 пикселей</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">
+                <span style="text-align: -webkit-center;">нет</span>
+              </p>
+            </td>
+            <td width="14%">
+              <p align="CENTER">курсы валют</p>
+            </td>
+            <td width="18%">
+              <p align="CENTER">1 месяц</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">36 000 тг.</p>
+            </td>
+          </tr>
+          <tr valign="TOP">
+            <td width="7%">
+              <p align="CENTER">16</p>
+            </td>
+            <td width="31%">
+              <p align="CENTER">468х60 пикселей</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">
+                <span>1/4 шт.</span>
+              </p>
+            </td>
+            <td width="14%">
+              <p align="CENTER">курсы валют</p>
+            </td>
+            <td width="18%">
+              <p align="CENTER">1 месяц</p>
+            </td>
+            <td width="15%">
+              <p align="CENTER">18 000 тг.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Ротация — чередование баннеров.<br/>
+      1/4 — на одном месте могут находиться до 4 баннеров, отображающиеся поочерёдно в случайном порядке.<br/>
+      Требования к баннерам: Форматы баннеров: jpg, png, gif не больше 100 кб.Также мы можем разработать для вас любой flash баннер. Стоимость разработки: от 6000 тенге. На сайте не размещаются рекламные материалы, противоречащие нормам морали и законодательству РК.<br/>
+      <br/>
+      <b>Каждый месяц посещаемость сайта растёт в среднем на 15%</b>
+    </p>
+    <b style="text-align: center; line-height: 1.5em;">30 000 посетителей в месяц;</b><br/>
+    <b style="text-align: center; line-height: 1.5em;">более 170000 просмотров страниц.</b>
+  </div>
+
+  <div class="mx-auto">
+    <p style="text-align: center;">По всем вопросам звоните: 8 (7232) 25-26-54, 24-40-55, т/ф 25-95-18<br/>
+      e-mail:
+      <a href="mailto:info@cityinfo.kz">info@cityinfo.kz</a>,
+      <a href="mailto:1355@1355.kz">1355@1355.kz</a>
+    </p>
+  </div>
+
+{% endblock %}

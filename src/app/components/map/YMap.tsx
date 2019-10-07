@@ -1,19 +1,25 @@
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-// @ts-ignore
-import { YMaps, Map, ZoomControl, Placemark } from 'react-yandex-maps';
+
+import {
+  YMaps,
+  Map,
+  ZoomControl,
+  Placemark,
+  YMapsApi,
+} from 'react-yandex-maps';
 import PopupContent from './PopupContent';
 import Spinner from '../Spinner';
 
 interface Props {
   rates: ExchangeRate[];
   selectedPointId: number;
-  resetSelectedPointId: Function;
+  // resetSelectedPointId: Function;
   mode: string;
   mapCenter: number[];
 }
 interface State {
-  ymaps: any;
+  ymaps: YMapsApi;
   bounds: number[][];
   loading: boolean;
 }
@@ -126,8 +132,7 @@ class YMap extends React.Component<Props, State> {
               zoom: 14,
               behaviors: ['default', 'scrollZoom'],
             }}
-            width="100%"
-            height="89vh"
+            className="YMap"
             onLoad={(ymaps: any) => this.setYmaps(ymaps)}
             instanceRef={(ref: any) => ref && this.setCenter(ref)}
           >

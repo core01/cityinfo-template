@@ -1,166 +1,83 @@
 import * as React from 'react';
-import ExchangeTable from './components/ExchangeTable';
-import YMap from './components/map/YMap';
-import Spinner from './components/SocketErrorSpinner';
+import { Fragment } from 'react';
 import axios from 'axios';
 import * as socketIOClient from 'socket.io-client';
+import TableWithMap from '@app/components/TableWithMap';
+import { connect } from 'react-redux';
+import { State as RatesState } from './store/rates/reducers';
+import { State as ErrorsState } from './store/errors/reducers';
+import {
+  setRates,
+  setBestRates,
+  setSelectedPoint,
+  updateRate,
+  setMode,
+} from './store/rates/actions';
+import { setSocketError } from './store/errors/actions';
+import { AppState } from './store';
+import Spinner from './components/Spinner';
+import Table from './components/Table';
 
-interface BestCourses {
-  [key: string]: number;
+interface State {
+  loading: boolean;
+  showFull: boolean;
 }
 
 interface Props {
   retailCityId: number;
   wholesaleCityId: number | null;
   mapCenter: number[];
+  setRates: Function;
+  setBestRates: Function;
+  updateRate: Function;
+  setSocketError: Function;
+  setMode: Function;
+  rates: RatesState;
+  errors: ErrorsState;
 }
 
-interface State {
-  rates: ExchangeRate[];
-  best: BestCourses;
-  mode: string;
-  sortBy: string;
-  selectedPointId: number;
-  socketError: boolean;
-}
-
-class App extends React.Component<Props, State> {
-  state: State = {
-    mode: 'retail',
-    sortBy: 'date_update',
-    rates: [],
-    best: {},
-    selectedPointId: 0,
-    socketError: false,
+class App extends React.PureComponent<Props, State> {
+  state = {
+    loading: true,
+    showFull: true,
   };
 
-  setMode(mode: string | null) {
-    if (mode === 'wholesale' && this.props.wholesaleCityId === null) {
-      // @todo check this behaviour
-      return;
-    }
-    this.setState({ mode: mode, selectedPointId: 0 }, this.getRates);
-  }
-
-  setSortBy(sortBy: string) {
-    this.setState({ sortBy: sortBy }, this.sortRates);
-  }
-
-  resetSelectedPoint() {
-    this.setState({ selectedPointId: 0 });
-  }
-
-  getRates() {
+  toggleShowFull = () => {
+    this.setState({
+      showFull: !this.state.showFull,
+    });
+  };
+  getRates = (mode: string = 'retail') => {
     let cityId = this.props.retailCityId;
-    if (this.state.mode === 'wholesale') {
+    if (mode === 'wholesale') {
       cityId = this.props.wholesaleCityId;
     }
-
+    this.setState({ loading: true });
     axios
       .get(process.env.API_URL + '/courses/' + cityId)
       .then(response => {
-        this.setState({ rates: response.data.rates, best: response.data.best });
+        this.props.setRates(response.data.rates);
+        this.props.setBestRates(response.data.best);
       })
       .catch(error => {
         console.log(error);
+      })
+      .then(() => {
+        this.setState({ loading: false });
       });
-  }
-
-  selectPoint(id: number) {
-    this.setState({ selectedPointId: id }, () => {
-      // Сбрасываем выбранную метку
-      this.setState({ selectedPointId: 0 });
-    });
-  }
-
-  sortRates() {
-    const sortBy = this.state.sortBy;
-
-    let rates: ExchangeRate[] = this.state.rates;
-
-    if (sortBy.substr(0, 3) === 'sel') {
-      let zeroedRates: ExchangeRate[] = [];
-      const filteredRates = rates.filter(rate => {
-        if (rate[sortBy] === 0) {
-          zeroedRates.push(rate);
-          return false;
-        }
-        return true;
-      });
-      filteredRates.sort((first, second) => {
-        if (first[sortBy] > second[sortBy] || first[sortBy] === 0) {
-          return 1;
-        }
-        if (first[sortBy] < second[sortBy]) {
-          return -1;
-        }
-        if (first[sortBy] === 0 && second[sortBy] > 0) {
-          return 1;
-        }
-        if (first[sortBy] > 0 && second[sortBy] === 0) {
-          return -1;
-        }
-
-        return 0;
-      });
-
-      rates = filteredRates.concat(zeroedRates);
-    } else if (sortBy.substr(0, 3) === 'buy') {
-      rates.sort((first, second) =>
-        first[sortBy] < second[sortBy]
-          ? 1
-          : first[sortBy] > second[sortBy]
-          ? -1
-          : 0
-      );
-    } else {
-      rates.sort((first, second) =>
-        first.date_update > second.date_update
-          ? -1
-          : first.date_update < second.date_update
-          ? 1
-          : 0
-      );
-    }
-
-    this.setState({ rates: rates });
-  }
+  };
 
   updateRate(newRate: ExchangeRateUpdate) {
-    let itemIndex;
-    this.state.rates.map((rate, index) => {
+    let itemIndex = null;
+    const { rates } = this.props.rates;
+
+    rates.map((rate, index) => {
       if (rate.id === newRate.id) {
         itemIndex = index;
       }
     });
-    if (itemIndex !== undefined) {
-      let newRates = this.state.rates;
-      delete newRate.city_id;
-      newRates[itemIndex as number] = newRate;
-      this.updateBest(newRate);
-      this.setState({ rates: newRates }, this.sortRates);
-    } else {
-      let rates = this.state.rates;
-      rates.push(newRate);
-      this.setState({ rates }, this.sortRates);
-      this.updateBest(newRate);
-    }
-  }
-
-  updateBest(rate: ExchangeRate) {
-    let best = Object.assign({}, this.state.best);
-    for (let property in this.state.best) {
-      if (property.substr(0, 3) === 'buy') {
-        if (rate[property] > best[property]) {
-          best[property] = rate[property] as number;
-        }
-      } else {
-        if (rate[property] < best[property]) {
-          best[property] = rate[property] as number;
-        }
-      }
-    }
-    this.setState({ best });
+    // updateRate also updates Best
+    this.props.updateRate(newRate, itemIndex);
   }
 
   socketInit() {
@@ -169,31 +86,31 @@ class App extends React.Component<Props, State> {
     });
 
     socket.on('reconnect', () => {
-      this.setState({ socketError: false });
+      this.props.setSocketError(false);
       this.getRates();
     });
 
     socket.on('connect_error', () => {
-      if (!this.state.socketError) {
-        this.setState({ socketError: true });
+      if (!this.props.errors.socketError) {
+        this.props.setSocketError(true);
       }
     });
 
     socket.on('connect', () => {
       socket.emit('join', this.props.retailCityId);
-      socket.emit('join', this.props.wholesaleCityId);
+      if (this.props.wholesaleCityId) {
+        socket.emit('join', this.props.wholesaleCityId);
+      }
     });
 
     socket.on('update', (data: ExchangeRateUpdate) => {
+      const { mode } = this.props.rates;
       let needUpdate = false;
-      if (
-        data.city_id === this.props.retailCityId &&
-        this.state.mode === 'retail'
-      ) {
+      if (data.city_id === this.props.retailCityId && mode === 'retail') {
         needUpdate = true;
       } else if (
         data.city_id === this.props.wholesaleCityId &&
-        this.state.mode === 'wholesale'
+        mode === 'wholesale'
       ) {
         needUpdate = true;
       }
@@ -203,42 +120,89 @@ class App extends React.Component<Props, State> {
       }
     });
   }
-
+  setMode = (mode: string) => {
+    this.props.setMode(mode);
+    this.getRates(mode);
+  };
   componentDidMount() {
     this.getRates();
     this.socketInit();
   }
 
   render() {
+    const { mode } = this.props.rates;
+
+    const tabActiveClass =
+      'inline-block py-2 px-4 text-white bg-pelorous-500 text-white font-semibold cursor-pointer';
+    const tabInActiveClass =
+      'inline-block py-2 px-4 text-blue-500 hover:underline font-semibold cursor-pointer';
+
     return (
-      <div className="flex justify-between flex-wrap">
-        <div className="w-full lg:w-1/2 lg:h-full overflow-hidden relative mb-2 sm:mb-3 lg:mb-0">
-          <Spinner
-            show={this.state.socketError}
-            type="red"
-            message="Потеряно соединение, восстанавливаем..."
-          />
-          <ExchangeTable
-            rates={this.state.rates}
-            best={this.state.best}
-            mode={this.state.mode}
-            setMode={this.setMode.bind(this)}
-            setSortBy={this.setSortBy.bind(this)}
-            selectPoint={this.selectPoint.bind(this)}
-          />
+      <Fragment>
+        <div className="flex w-full justify-between mb-2">
+          <ul className="flex list-none">
+            <li className="mr-1">
+              <a
+                className={
+                  mode === 'retail' ? tabActiveClass : tabInActiveClass
+                }
+                onClick={this.setMode.bind(this, 'retail')}
+              >
+                Розница
+              </a>
+            </li>
+            <li>
+              <a
+                className={
+                  mode === 'wholesale' ? tabActiveClass : tabInActiveClass
+                }
+                onClick={this.setMode.bind(this, 'wholesale')}
+              >
+                Опт
+              </a>
+            </li>
+          </ul>
+          <ul className="flex list-none">
+            <li>
+              <a
+                className="inline-block py-2 px-4 text-white cursor-pointer bg-green-600"
+                onClick={this.toggleShowFull}
+              >
+                Переключить режим отображения
+              </a>
+            </li>
+          </ul>
         </div>
-        <div className="w-full lg:w-1/2 mt-2 md:mt-0">
-          <YMap
-            rates={this.state.rates}
-            selectedPointId={this.state.selectedPointId}
-            resetSelectedPointId={this.resetSelectedPoint.bind(this)}
-            mode={this.state.mode}
+
+        {this.state.showFull ? (
+          <Table />
+        ) : (
+          <TableWithMap
             mapCenter={this.props.mapCenter}
+            getRates={this.getRates}
+            loading={this.state.loading}
           />
-        </div>
-      </div>
+        )}
+      </Fragment>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state: AppState) => ({
+  rates: state.rates,
+  errors: state.errors,
+});
+
+const actionCreators = {
+  setRates,
+  setBestRates,
+  setSelectedPoint,
+  setMode,
+  updateRate,
+  setSocketError,
+};
+
+export default connect(
+  mapStateToProps,
+  actionCreators
+)(App);

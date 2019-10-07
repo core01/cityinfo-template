@@ -1,33 +1,28 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-// @ts-ignore
-import styles from './ExchangeTable.module.css';
-import ExchangeRate from './ExchangeRate';
-import { currencies, currencyFlags } from '../constants';
-
-interface BestCourses {
-  [key: string]: number;
-}
+import * as styles from './index.module.css';
+import Row from './row';
+import CurrencySelect from '@app/components/CurrencySelect';
+import { getModeTitle } from '@app/utils';
 
 interface Props {
   rates: ExchangeRate[];
-  best: BestCourses;
+  best: BestRates;
   mode: string;
-  setMode: Function;
   setSortBy: Function;
   selectPoint: Function;
 }
 
-const ExchangeTable = (props: Props) => {
+const SingleCurrencyTable = (props: Props) => {
   const [currency, setCurrency] = useState('USD');
   const [filteredRates, setFilteredRates] = useState([]);
   const [query, setQuery] = useState('');
 
-  const changeCurrency = (event: any) => {
-    setCurrency(event.target.value);
+  const changeCurrency = (currency: string) => {
+    setCurrency(currency);
   };
 
-  const filterRates = (event: any) => {
+  const filterRates = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.toLowerCase();
     let filteredRates: ExchangeRate[] = [];
     if (value.length > 0) {
@@ -68,16 +63,9 @@ const ExchangeTable = (props: Props) => {
     };
   }, []);
 
-  const setMode = (mode: string) => {
-    props.setMode(mode);
-  };
-
   let rates = props.rates;
-  let best: BestCourses = props.best;
-  let title = 'Розничные курсы';
-  if (props.mode === 'wholesale') {
-    title = 'Оптовые курсы';
-  }
+  let best: BestRates = props.best;
+  let title = getModeTitle(props.mode);
 
   if (query.length > 0) {
     rates = filteredRates;
@@ -101,7 +89,7 @@ const ExchangeTable = (props: Props) => {
       !rate.hidden
     ) {
       return (
-        <ExchangeRate
+        <Row
           rate={rate}
           currency={currency}
           key={rate.id}
@@ -112,48 +100,11 @@ const ExchangeTable = (props: Props) => {
     }
   });
 
-  const selectOptions = currencies.map(currency => {
-    return (
-      <option value={currency} key={currency}>
-        {currency}
-      </option>
-    );
-  });
-  const tabActiveClass =
-    'inline-block py-2 px-4 text-white bg-pelorous-500 text-white font-semibold cursor-pointer';
-  const tabInActiveClass =
-    'inline-block py-2 px-4 text-blue-500 hover:underline font-semibold cursor-pointer';
   return (
-    <React.Fragment>
+    <div className={styles.Wrapper}>
       <div className={styles.HeadTableWrapper} id="head-table-wrapper">
         <div className="flex mb-1">
-          <div className="w-1/2">
-            <ul className="flex">
-              <li className="mr-1">
-                <a
-                  className={
-                    props.mode === 'retail' ? tabActiveClass : tabInActiveClass
-                  }
-                  onClick={setMode.bind(this, 'retail')}
-                >
-                  Розница
-                </a>
-              </li>
-              <li className="mr-1">
-                <a
-                  className={
-                    props.mode === 'wholesale'
-                      ? tabActiveClass
-                      : tabInActiveClass
-                  }
-                  onClick={setMode.bind(this, 'wholesale')}
-                >
-                  Опт
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className={[styles.Filter, 'w-1/2'].join(' ')}>
+          <div className={[styles.Filter, 'w-full'].join(' ')}>
             <label>Поиск</label>
             <input type="text" onChange={filterRates} />
           </div>
@@ -172,15 +123,10 @@ const ExchangeTable = (props: Props) => {
                 Телефоны
               </th>
               <th colSpan={2} className={styles.CurrencySelectColumn}>
-                <img src={currencyFlags[currency]} alt={currency} />
-                <select
-                  name="currency"
-                  id="currency"
-                  value={currency}
-                  onChange={changeCurrency}
-                >
-                  {selectOptions}
-                </select>
+                <CurrencySelect
+                  currency={currency}
+                  onChangeCurrency={changeCurrency}
+                />
               </th>
             </tr>
             <tr>
@@ -212,8 +158,8 @@ const ExchangeTable = (props: Props) => {
           </tbody>
         </table>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
-export default ExchangeTable;
+export default SingleCurrencyTable;

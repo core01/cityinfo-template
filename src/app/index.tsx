@@ -1,6 +1,11 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import App from './App';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import AppState from './store';
+
+const store = createStore(AppState);
 
 interface InitialData {
   retailCityId: number;
@@ -17,12 +22,14 @@ let initialData: InitialData = {
 if ((window as any).initialData !== undefined) {
   initialData = (window as any).initialData;
 }
-// @ts-ignore
-ReactDOM.render(
-  <App
-    retailCityId={initialData.retailCityId}
-    wholesaleCityId={initialData.wholesaleCityId}
-    mapCenter={initialData.mapCenter}
-  />,
+
+render(
+  <Provider store={store}>
+    <App
+      retailCityId={initialData.retailCityId}
+      wholesaleCityId={initialData.wholesaleCityId}
+      mapCenter={initialData.mapCenter}
+    />
+  </Provider>,
   document.getElementById('root')
 );
