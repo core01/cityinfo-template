@@ -53,12 +53,11 @@ const SingleCurrencyTable = (props: Props) => {
   };
 
   useEffect(() => {
+    setHeadWrapperPadding();
     // fix head table width
-    window.addEventListener('load', setHeadWrapperPadding);
     window.addEventListener('resize', setHeadWrapperPadding);
 
     return () => {
-      window.removeEventListener('load', setHeadWrapperPadding);
       window.removeEventListener('resize', setHeadWrapperPadding);
     };
   }, []);
